@@ -1,21 +1,21 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Football 5" />
+  <img src="./.github/app.gif" alt="Football Mania" />
 
 &#xa0;
 
   <!-- <a href="https://tsr.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">Football 5</h1>
+<h1 align="center">Football Mania</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/osh6006/football5?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/osh6006/football-mania?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/osh6006/football5?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/osh6006/football-mania?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/osh6006/football5?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/osh6006/football-mania?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/osh6006/football5?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/osh6006/football-mania?color=56BEB8">
 
   <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/tsr?color=56BEB8" /> -->
 
@@ -46,7 +46,7 @@
 
 ## :dart: About
 
-세계 축구 5대리그의 모든 것을 알아보세요
+원하시는 세계 축구 리그를 골라서 모든 것을 알아보세요
 
 ## :sparkles: Features
 
@@ -61,7 +61,6 @@
 - [Expo](https://expo.io/)
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Requirements
@@ -72,10 +71,10 @@
 
 ```bash
 # 프로젝트를 복제하세요
-$ git clone https://github.com/osh6006/football5.git
+$ git clone https://github.com/osh6006/football-mania.git
 
 # 폴더 이동
-$ cd football5
+$ cd football-mania
 
 # dependencies 설치
 $ npm i
