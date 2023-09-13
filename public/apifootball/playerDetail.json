@@ -1,0 +1,173 @@
+{
+  "response": [
+    {
+      "player": {
+        "id": 18973,
+        "name": "S. March",
+        "firstname": "Solomon Benjamin",
+        "lastname": "March",
+        "age": 29,
+        "birth": {
+          "date": "1994-07-20",
+          "place": "Eastbourne",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "180 cm",
+        "weight": "88 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/18973.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 51,
+            "name": "Brighton",
+            "logo": "https://media-2.api-sports.io/football/teams/51.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-2.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-2.api-sports.io/flags/gb.svg",
+            "season": 2023
+          },
+          "games": {
+            "appearences": 4,
+            "lineups": 4,
+            "minutes": 317,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "7.600000",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 3,
+            "bench": 0
+          },
+          "shots": {
+            "total": 7,
+            "on": 6
+          },
+          "goals": {
+            "total": 3,
+            "conceded": 0,
+            "assists": null,
+            "saves": null
+          },
+          "passes": {
+            "total": 119,
+            "key": 5,
+            "accuracy": 24
+          },
+          "tackles": {
+            "total": 7,
+            "blocks": null,
+            "interceptions": 7
+          },
+          "duels": {
+            "total": 51,
+            "won": 22
+          },
+          "dribbles": {
+            "attempts": 13,
+            "success": 6,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 5,
+            "committed": 8
+          },
+          "cards": {
+            "yellow": 0,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        },
+        {
+          "team": {
+            "id": 51,
+            "name": "Brighton",
+            "logo": "https://media-3.api-sports.io/football/teams/51.png"
+          },
+          "league": {
+            "id": 1022,
+            "name": "Premier League - Summer Series",
+            "country": "England",
+            "logo": "https://media-1.api-sports.io/football/leagues/1022.png",
+            "flag": "https://media-1.api-sports.io/flags/gb.svg",
+            "season": 2023
+          },
+          "games": {
+            "appearences": 1,
+            "lineups": 1,
+            "minutes": 46,
+            "number": null,
+            "position": "Midfielder",
+            "rating": null,
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 1,
+            "bench": 0
+          },
+          "shots": {
+            "total": null,
+            "on": null
+          },
+          "goals": {
+            "total": 0,
+            "conceded": null,
+            "assists": null,
+            "saves": null
+          },
+          "passes": {
+            "total": null,
+            "key": null,
+            "accuracy": null
+          },
+          "tackles": {
+            "total": null,
+            "blocks": null,
+            "interceptions": null
+          },
+          "duels": {
+            "total": null,
+            "won": null
+          },
+          "dribbles": {
+            "attempts": null,
+            "success": null,
+            "past": null
+          },
+          "fouls": {
+            "drawn": null,
+            "committed": null
+          },
+          "cards": {
+            "yellow": 1,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": null,
+            "missed": null,
+            "saved": null
+          }
+        }
+      ]
+    }
+  ]
+}
