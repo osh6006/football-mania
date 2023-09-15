@@ -68,7 +68,7 @@ export default function OverView() {
   return (
     <OverViewWrapper>
       <ProfileWrapper>
-        <Profile email="test@test.com" name="테스트" />
+        <Profile />
       </ProfileWrapper>
       <LeftSideWrapper>
         <Title title="어서오세요 Test 님 !" />

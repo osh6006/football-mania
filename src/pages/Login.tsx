@@ -76,7 +76,7 @@ export default function Login() {
         <Ball size={35} />
         <Desc>로그인 후 서비스를 이용해 보세요.</Desc>
         <SocialLoginBtn type="google" />
-        <SocialLoginBtn type="logout" />
+        <SocialLoginBtn type="github" />
       </FormWrapper>
     </LoginWrapper>
   );

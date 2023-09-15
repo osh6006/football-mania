@@ -43,11 +43,6 @@ const SocialLoginBtn: React.FC<SocialLoginBtnProps> = ({ type }) => {
     dispatch(login(user));
   };
 
-  const handleLogout = async () => {
-    await firebaseLogout();
-    dispatch(logout());
-  };
-
   if (type === "google") {
     return (
       <SocialBtn $color="google" onClick={handleLogin}>
@@ -57,10 +52,11 @@ const SocialLoginBtn: React.FC<SocialLoginBtnProps> = ({ type }) => {
     );
   }
 
-  if (type === "logout") {
+  if (type === "github") {
     return (
-      <SocialBtn $color="google" onClick={handleLogout}>
-        {`로그아웃`}
+      <SocialBtn $color="google" onClick={handleLogin}>
+        <FcGoogle size={25} />
+        {`깃허브로 로그인`}
       </SocialBtn>
     );
   }
