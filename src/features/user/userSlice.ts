@@ -1,8 +1,12 @@
 import { User } from "@firebase/auth";
 import { createSlice } from "@reduxjs/toolkit";
 
+interface UserState {
+  user: User;
+}
+
 export interface userSlice {
-  user: User | null;
+  user: UserState | null;
 }
 
 const initialState: userSlice = {
@@ -28,7 +32,10 @@ export const userSlice = createSlice({
 export const { login, logout, setUser } = userSlice.actions;
 
 export const selectUser = (state: userSlice) => {
-  return state.user;
+  if (state.user) {
+    return state.user.user;
+  }
+  return null;
 };
 
 export default userSlice.reducer;

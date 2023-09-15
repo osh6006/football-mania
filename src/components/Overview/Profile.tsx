@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import Avatar from "../common/Avatar";
-
-interface ProfileProps {
-  name: string;
-  email: string;
-}
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/user/userSlice";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -17,13 +14,15 @@ const Name = styled.div`
 `;
 const Email = styled.div``;
 
-const Profile: React.FC<ProfileProps> = ({ name, email }) => {
+const Profile: React.FC = () => {
+  const user = useSelector(selectUser);
+
   return (
     <ProfileWrapper>
-      <Avatar src="asdf" />
+      <Avatar src={user?.photoURL || ""} alt="ProfileImg" />
       <div>
-        <Name>{name}</Name>
-        <Email>{email}</Email>
+        <Name>{user?.displayName}</Name>
+        <Email>{user?.email}</Email>
       </div>
     </ProfileWrapper>
   );

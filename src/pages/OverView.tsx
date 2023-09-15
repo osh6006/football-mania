@@ -51,12 +51,15 @@ const RightSideWrapper = styled.section`
 `;
 
 const ProfileWrapper = styled.div`
+  position: fixed;
   display: block;
   width: 300px;
-  right: 0;
-  position: absolute;
+  left: 5.5rem;
+  bottom: 2rem;
 
   @media (max-width: 768px) {
+    left: 5.5rem;
+    bottom: 2rem;
     display: none;
   }
 `;
