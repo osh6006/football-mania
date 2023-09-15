@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
-import { login, logout } from "../../features/user/userSlice";
+import { login } from "../../features/user/userSlice";
+
+import { googleLogin } from "../../api/firebase";
 
 import styled from "styled-components";
-import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
-import { firebaseLogout, googleLogin } from "../../api/firebase";
+import { AiOutlineGoogle } from "@react-icons/all-files/ai/AiOutlineGoogle";
+import { AiOutlineGithub } from "@react-icons/all-files/ai/AiOutlineGithub";
 
 interface SocialLoginBtnProps {
   type: "google" | "github" | "logout";
@@ -22,7 +24,7 @@ const SocialBtn = styled.button<BtnProps>`
   gap: 0.5rem;
   cursor: pointer;
   font-size: 1.2rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding: 10px 1rem;
 
   border: 2px solid ${(props) => props.theme.colors[props.$color] || "#4827"};
@@ -33,6 +35,7 @@ const SocialBtn = styled.button<BtnProps>`
   &:hover {
     background-color: ${(props) => props.theme.colors[props.$color] || "#4827"};
   }
+  user-select: none;
 `;
 
 const SocialLoginBtn: React.FC<SocialLoginBtnProps> = ({ type }) => {
@@ -46,17 +49,17 @@ const SocialLoginBtn: React.FC<SocialLoginBtnProps> = ({ type }) => {
   if (type === "google") {
     return (
       <SocialBtn $color="google" onClick={handleLogin}>
-        <FcGoogle size={25} />
-        {`구글로 로그인`}
+        <AiOutlineGoogle size={25} />
+        {`Sign up with Google`}
       </SocialBtn>
     );
   }
 
   if (type === "github") {
     return (
-      <SocialBtn $color="google" onClick={handleLogin}>
-        <FcGoogle size={25} />
-        {`깃허브로 로그인`}
+      <SocialBtn $color="github" onClick={handleLogin}>
+        <AiOutlineGithub size={25} />
+        {`Sign up with Github`}
       </SocialBtn>
     );
   }

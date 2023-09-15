@@ -12,6 +12,7 @@ const Theme: DefaultTheme = {
     background: "#212121",
     secondBackground: "#424242",
     google: "rgb(220, 74, 61)",
+    github: "#862e9c",
   },
   border: {
     radius: "10px",
