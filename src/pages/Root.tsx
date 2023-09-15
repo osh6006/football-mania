@@ -9,6 +9,7 @@ import MobileBar from "../components/common/MobileBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { darken, rgba } from "polished";
+import useUser from "../hooks/useUser";
 
 interface RootWrapperProps {
   $leagueColor?: string;
@@ -35,8 +36,13 @@ const RootWrapper = styled.main<RootWrapperProps>`
 export default function Root() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const selectedLeague = useSelector((state: RootState) => state.league.selectedLeague);
-  const colorObj = SidebarRoutes.find((el) => el.id.toString() === selectedLeague);
+  useUser("/");
+  const selectedLeague = useSelector(
+    (state: RootState) => state.league.selectedLeague
+  );
+  const colorObj = SidebarRoutes.find(
+    (el) => el.id.toString() === selectedLeague
+  );
 
   useEffect(() => {
     if (pathname === "/") {

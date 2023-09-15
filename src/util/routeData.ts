@@ -5,8 +5,6 @@ import { ImSortNumericAsc as ranking } from "@react-icons/all-files/im/ImSortNum
 import { AiFillSchedule as activeSchedule } from "@react-icons/all-files/ai/AiFillSchedule";
 import { AiOutlineSchedule as schedule } from "@react-icons/all-files/ai/AiOutlineSchedule";
 import { AiOutlineSearch as search } from "@react-icons/all-files/ai/AiOutlineSearch";
-import { AiOutlineStar as top } from "@react-icons/all-files/ai/AiOutlineStar";
-import { AiFillStar as activeTop } from "@react-icons/all-files/ai/AiFillStar";
 import { SiFacebooklive as live } from "@react-icons/all-files/si/SiFacebooklive";
 
 import laligaSvgPath from "/svgs/la-liga.svg";
@@ -92,7 +90,7 @@ export const SidebarRoutes: AllRouteType[] = [
     color: "#1DA5AD",
     svg: serieSvgPath,
     $scale: 2.3,
-    $mobileScale: 1.8,
+    $mobileScale: 1.5,
   },
   {
     id: 78,

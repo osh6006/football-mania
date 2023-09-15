@@ -156,7 +156,7 @@ const BottomMenu = styled(NavLink)<MenuProps>`
   }}
 `;
 
-const MenuSvg = styled(LazyLoadImage)<MenuSvgProps>`
+const MenuSvg = styled.img<MenuSvgProps>`
   scale: ${(props) => props.$scale};
 `;
 
@@ -185,8 +185,15 @@ const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
       <TopbarMenuWrapper $open={navOpen}>
         {SecondSidebarRoutes?.map((item) => (
           <li key={item.name}>
-            <TopbarMenu onClick={handleClick} to={`/${title}/${leagueId}${item.path}`}>
-              {subTitle === item.name.toLowerCase() ? <item.activeIcon /> : <item.icon />}
+            <TopbarMenu
+              onClick={handleClick}
+              to={`/${title}/${leagueId}${item.path}`}
+            >
+              {subTitle === item.name.toLowerCase() ? (
+                <item.activeIcon />
+              ) : (
+                <item.icon />
+              )}
               {item.name}
             </TopbarMenu>
           </li>
@@ -195,8 +202,16 @@ const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
       <BottomBarWrapper>
         {menus &&
           menus?.map((menu) => (
-            <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
-              <MenuSvg alt="League Logo" effect="blur" src={menu.svg} $scale={menu.$mobileScale} />
+            <BottomMenu
+              key={menu.name}
+              to={menu.path}
+              $selectColor={menu.color}
+            >
+              <MenuSvg
+                alt="League Logo"
+                src={menu.svg}
+                $scale={menu.$mobileScale}
+              />
             </BottomMenu>
           ))}
       </BottomBarWrapper>

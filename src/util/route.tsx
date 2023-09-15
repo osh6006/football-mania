@@ -9,6 +9,7 @@ import Search from "../pages/Search";
 import Rank from "../pages/Rank";
 import PlayerDetail from "../pages/PlayerDetail";
 import TeamDetail from "../pages/TeamDetail";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
