@@ -1,17 +1,25 @@
 import { NavLink } from "react-router-dom";
-import { AllRouteType } from "../../util/routeData";
 
-import { lighten } from "polished";
-
-import styled, { css } from "styled-components";
-
-import { RiFootballFill } from "@react-icons/all-files/ri/RiFootballFill";
-import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
-
-import SecondSidebar from "./SecondSidebar";
+import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/user/userSlice";
 import { firebaseLogout } from "../../api/firebase";
+
+import { AllRouteType } from "../../util/routeData";
+
+import { darken, lighten } from "polished";
+
+import styled, { css } from "styled-components";
+
+import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
+import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
+import { RiFootballFill } from "@react-icons/all-files/ri/RiFootballFill";
+
+import SecondSidebar from "./SecondSidebar";
+
+import { CustomModalStyles } from "../../styles/modal";
+import useModal from "../../hooks/useModal";
+import LeagueSelectModal from "../Modal/SelectLeague/LeagueSelectModal";
 
 interface SidebarProps {
   menus: AllRouteType[];
@@ -120,14 +128,18 @@ const LogOutBtn = styled.button`
   color: white;
   border-radius: ${(props) => props.theme.border.radius};
   background-color: ${(props) =>
-    lighten(0.15, props.theme.colors.secondBackground)};
+    lighten(0.2, props.theme.colors.secondBackground)};
   cursor: pointer;
-  transition: border 0.1s ease-out, background 0.2s ease-in,
+  transition: border 0.1s ease-out, background 0.2s linear,
     color 0.3s ease-in-out;
 
   &:hover {
-    background: ${(props) => props.theme.colors.background};
+    background: ${(props) => darken(0.2, props.theme.colors.secondBackground)};
   }
+`;
+
+const AddLeagueBtn = styled(LogOutBtn)`
+  position: static;
 `;
 
 const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
@@ -136,6 +148,9 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
     await firebaseLogout();
     dispatch(logout());
   };
+
+  const { openModal, closeModal, isOpen } = useModal();
+
   return (
     <SidebarWrapper>
       <LeagueSidebarWrapper>
@@ -158,13 +173,27 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
                   </Menu>
                 </li>
               ))}
+            <AddLeagueBtn onClick={openModal}>
+              <AiOutlinePlus size={25} />
+            </AddLeagueBtn>
           </MenuWrapper>
+          <LogOutBtn onClick={handleLogout}>
+            <BiLogOut size={25} />
+          </LogOutBtn>
         </Navigation>
-        <LogOutBtn onClick={handleLogout}>
-          <BiLogOut size={25} />
-        </LogOutBtn>
       </LeagueSidebarWrapper>
       <SecondSidebar />
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        style={CustomModalStyles}
+        s
+        contentLabel="Example Modal"
+        ariaHideApp={false}
+        shouldCloseOnOverlayClick={true}
+      >
+        <LeagueSelectModal closeModal={closeModal} />
+      </Modal>
     </SidebarWrapper>
   );
 };

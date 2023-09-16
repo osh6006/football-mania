@@ -36,6 +36,7 @@ const RootWrapper = styled.main<RootWrapperProps>`
 export default function Root() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
   useUser("/");
   const selectedLeague = useSelector(
     (state: RootState) => state.league.selectedLeague

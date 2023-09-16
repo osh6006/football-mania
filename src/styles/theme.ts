@@ -11,6 +11,7 @@ const Theme: DefaultTheme = {
     error: "#b00020",
     background: "#212121",
     secondBackground: "#424242",
+    danger: "#c92a2a",
     google: "rgb(220, 74, 61)",
     github: "#862e9c",
   },

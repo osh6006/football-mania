@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+import { getDatabase, ref, get } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -19,6 +20,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth();
+const database = getDatabase();
 
 export async function googleLogin() {
   return signInWithPopup(auth, googleProvider)
@@ -37,5 +39,14 @@ export async function firebaseLogout() {
 export function onUserStateChange(callback: (user: User | null) => void) {
   return onAuthStateChanged(auth, (user) => {
     callback(user);
+  });
+}
+
+export async function getUserLeague() {
+  return get(ref(database, "footballMania/league")).then((snapshot) => {
+    if (snapshot.exists()) {
+      const leagues = snapshot.val();
+      return leagues;
+    }
   });
 }
