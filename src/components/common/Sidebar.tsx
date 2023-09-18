@@ -187,7 +187,6 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
         isOpen={isOpen}
         onRequestClose={closeModal}
         style={CustomModalStyles}
-        s
         contentLabel="Example Modal"
         ariaHideApp={false}
         shouldCloseOnOverlayClick={true}

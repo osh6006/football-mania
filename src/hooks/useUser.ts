@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import { getUserLeague, onUserStateChange } from "../api/firebase";
+import {
+  getLeagueList,
+  getUserSelectLeague,
+  initSelectLeague,
+  onUserStateChange,
+} from "../api/firebase";
 import { selectUser, setUser } from "../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -16,9 +21,11 @@ export default function useUser(path: string) {
   useEffect(() => {
     onUserStateChange(async (isUser) => {
       if (isUser) {
-        const leagues = await getUserLeague(isUser);
+        await initSelectLeague(isUser);
+        const leagues = await getLeagueList();
+        const selectLeagues = await getUserSelectLeague(isUser.uid);
         dispatch(setUser(isUser));
-        dispatch(setLeagueTypes(leagues));
+        dispatch(setLeagueTypes(selectLeagues));
         navigate(path);
       } else {
         navigate("/login");

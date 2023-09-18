@@ -38,6 +38,7 @@ export default function Root() {
   const navigate = useNavigate();
 
   useUser("/");
+
   const selectedLeague = useSelector(
     (state: RootState) => state.league.selectedLeague
   );
