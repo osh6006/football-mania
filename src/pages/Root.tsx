@@ -54,7 +54,7 @@ export default function Root() {
 
   return (
     <RootWrapper $leagueColor={colorObj?.color}>
-      <Sidebar menus={SidebarRoutes} />
+      <Sidebar />
       <MobileBar menus={SidebarRoutes} />
       <Outlet />
     </RootWrapper>

@@ -24,7 +24,7 @@ const EmptyData = styled.p`
 
 const ChoiceLeagueList = () => {
   const leagueTypes = useSelector(
-    (state: RootState) => state.league.selectLeagueList
+    (state: RootState) => state.league.leagueList
   );
 
   if (!leagueTypes) {
@@ -33,12 +33,6 @@ const ChoiceLeagueList = () => {
 
   return (
     <ChoiceLeagueListWrapper>
-      {leagueTypes.map((type) => (
-        <LeagueType league={type} key={type.id} role="add" />
-      ))}
-      {leagueTypes.map((type) => (
-        <LeagueType league={type} key={type.id} role="add" />
-      ))}
       {leagueTypes.map((type) => (
         <LeagueType league={type} key={type.id} role="add" />
       ))}

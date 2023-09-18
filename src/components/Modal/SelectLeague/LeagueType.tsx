@@ -52,8 +52,8 @@ const LeagueType: React.FC<LeagueTypeProps> = ({ league, role }) => {
     dispatch(deleteLeagueTypes(id));
   };
 
-  const handleAdd = (id: number) => {
-    dispatch(addLeagueTypes(id));
+  const handleAdd = (league: DBLeague) => {
+    dispatch(addLeagueTypes(league));
   };
 
   return (
@@ -66,7 +66,7 @@ const LeagueType: React.FC<LeagueTypeProps> = ({ league, role }) => {
       )}
 
       {role === "add" && (
-        <DeleteBtn onClick={() => handleAdd(league.id)}>
+        <DeleteBtn onClick={() => handleAdd(league)}>
           <AiOutlinePlus size={18} />
         </DeleteBtn>
       )}

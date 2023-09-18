@@ -3,13 +3,13 @@ import { DBLeague } from "../../type/dbleague";
 
 export interface LeagueState {
   selectedLeague: string;
-  leagueTypes: DBLeague[] | null;
+  leagueList: DBLeague[] | null;
   selectLeagueList: DBLeague[] | null;
 }
 
 const initialState: LeagueState = {
   selectedLeague: "39",
-  leagueTypes: null,
+  leagueList: null,
   selectLeagueList: null,
 };
 
@@ -20,7 +20,10 @@ export const leagueSlice = createSlice({
     changeLeague: (state, action: PayloadAction<string>) => {
       state.selectedLeague = action.payload;
     },
-    setLeagueTypes: (state, action: PayloadAction<DBLeague[]>) => {
+    setLeagueList: (state, action: PayloadAction<DBLeague[]>) => {
+      state.leagueList = action.payload;
+    },
+    setSelectLeagueList: (state, action: PayloadAction<DBLeague[]>) => {
       state.selectLeagueList = action.payload;
     },
     addLeagueTypes: (state, action: PayloadAction<DBLeague>) => {
@@ -38,7 +41,8 @@ export const leagueSlice = createSlice({
 
 export const {
   changeLeague,
-  setLeagueTypes,
+  setSelectLeagueList,
+  setLeagueList,
   addLeagueTypes,
   deleteLeagueTypes,
 } = leagueSlice.actions;

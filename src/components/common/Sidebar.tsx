@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
 
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
+import { CustomModalStyles } from "../../styles/modal";
+import useModal from "../../hooks/useModal";
+
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/user/userSlice";
+import { RootState } from "../../store";
+
 import { firebaseLogout } from "../../api/firebase";
 
-import { AllRouteType } from "../../util/routeData";
-
 import { darken, lighten } from "polished";
-
 import styled, { css } from "styled-components";
 
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
@@ -16,14 +18,7 @@ import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
 import { RiFootballFill } from "@react-icons/all-files/ri/RiFootballFill";
 
 import SecondSidebar from "./SecondSidebar";
-
-import { CustomModalStyles } from "../../styles/modal";
-import useModal from "../../hooks/useModal";
 import LeagueSelectModal from "../Modal/SelectLeague/LeagueSelectModal";
-
-interface SidebarProps {
-  menus: AllRouteType[];
-}
 
 interface MenuProps {
   $selectColor: string;
@@ -142,14 +137,18 @@ const AddLeagueBtn = styled(LogOutBtn)`
   position: static;
 `;
 
-const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
+const Sidebar = () => {
   const dispatch = useDispatch();
+  const selectLeagueList = useSelector(
+    (state: RootState) => state?.league?.selectLeagueList
+  );
+
+  const { openModal, closeModal, isOpen } = useModal();
+
   const handleLogout = async () => {
     await firebaseLogout();
     dispatch(logout());
   };
-
-  const { openModal, closeModal, isOpen } = useModal();
 
   return (
     <SidebarWrapper>
@@ -159,17 +158,17 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
         </Logo>
         <Navigation>
           <MenuWrapper>
-            {menus &&
-              menus?.map((menu) => (
-                <li key={menu.name}>
+            {selectLeagueList &&
+              selectLeagueList?.map((menu) => (
+                <li key={menu.id}>
                   <Menu to={menu.path} $selectColor={menu.color}>
-                    {menu.svg && (
-                      <MenuSvg
-                        alt="league Logo"
-                        src={menu.svg}
-                        $scale={menu.$scale}
-                      />
-                    )}
+                    <MenuSvg
+                      alt="league Logo"
+                      src={`${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
+                        import.meta.env.VITE_FIREBASE_SAVE_URL
+                      }o/${menu.imageName}?alt=media&token=${menu.imageToken}`}
+                      $scale={menu.scale}
+                    />
                   </Menu>
                 </li>
               ))}

@@ -8,7 +8,10 @@ import {
 import { selectUser, setUser } from "../features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLeagueTypes } from "../features/league/leagueSlice";
+import {
+  setSelectLeagueList,
+  setLeagueList,
+} from "../features/league/leagueSlice";
 
 export default function useUser(path: string) {
   const dispatch = useDispatch();
@@ -25,7 +28,8 @@ export default function useUser(path: string) {
         const leagues = await getLeagueList();
         const selectLeagues = await getUserSelectLeague(isUser.uid);
         dispatch(setUser(isUser));
-        dispatch(setLeagueTypes(selectLeagues));
+        dispatch(setLeagueList(leagues));
+        dispatch(setSelectLeagueList(selectLeagues));
         navigate(path);
       } else {
         navigate("/login");

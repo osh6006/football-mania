@@ -18,17 +18,19 @@ const EmptyData = styled.p`
 `;
 
 function MyLeagueList() {
-  const leagueTypes = useSelector(
+  const selectLeagueList = useSelector(
     (state: RootState) => state.league.selectLeagueList
   );
 
-  if (!leagueTypes) {
+  console.log(selectLeagueList);
+
+  if (!selectLeagueList) {
     return <EmptyData>선택한 데이터가 없습니다.</EmptyData>;
   }
 
   return (
     <MyLeagueListWrapper>
-      {leagueTypes.map((type) => (
+      {selectLeagueList.map((type) => (
         <LeagueType league={type} key={type.id} role="delete" />
       ))}
     </MyLeagueListWrapper>
