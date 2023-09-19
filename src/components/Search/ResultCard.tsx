@@ -6,6 +6,8 @@ import { lighten, mix } from "polished";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useNavigate } from "react-router-dom";
+import useLeagueId from "../../hooks/useLeagueId";
 
 interface ResultCardProps {
   type: "team" | "player" | "coach";
@@ -27,7 +29,8 @@ const ResultCardWrapper = styled.div<CardProps>`
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${(props) => lighten(0.15, mix(0.8, "#808080", props.$color))};
+    background-color: ${(props) =>
+      lighten(0.15, mix(0.8, "#808080", props.$color))};
   }
 `;
 
@@ -79,15 +82,30 @@ const StatItem = styled.div`
   gap: 4px;
 `;
 
-const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coachInfo }) => {
+const ResultCard: React.FC<ResultCardProps> = ({
+  type,
+  playerInfo,
+  teamInfo,
+  coachInfo,
+}) => {
+  const navigate = useNavigate();
   const color = useColor();
-
   const player = playerInfo?.player;
   const stat = playerInfo?.statistics[0];
   const career = coachInfo?.career[0];
+  const leagueId = useLeagueId();
+
+  const handleClick = (id?: number) => {
+    if (id) {
+      navigate(`/league/${leagueId}/player/${id}`);
+    }
+  };
 
   return (
-    <ResultCardWrapper $color={color || "#fff"}>
+    <ResultCardWrapper
+      onClick={() => handleClick(playerInfo?.player.id || undefined)}
+      $color={color || "#fff"}
+    >
       {type === "player" && player && stat && (
         <>
           <Header $color={color || "#fff"}>
