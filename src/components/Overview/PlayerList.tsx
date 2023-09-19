@@ -44,11 +44,14 @@ const PlayerImg = styled(LazyLoadImage)`
 `;
 const Name = styled.div`
   cursor: pointer;
+  white-space: nowrap;
   &:hover {
     text-decoration: underline;
   }
 `;
-const Goals = styled.div``;
+const Goals = styled.div`
+  white-space: nowrap;
+`;
 
 const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
   const leagueId = useLeagueId();
