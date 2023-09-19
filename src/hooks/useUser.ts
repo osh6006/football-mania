@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import {
   setSelectLeagueList,
   setLeagueList,
+  setSelectedLeague,
 } from "../features/league/leagueSlice";
 
 export default function useUser(path: string) {
@@ -27,6 +28,7 @@ export default function useUser(path: string) {
         await initSelectLeague(isUser);
         const leagues = await getLeagueList();
         const selectLeagues = await getUserSelectLeague(isUser.uid);
+        dispatch(setSelectedLeague(selectLeagues[0].id));
         dispatch(setUser(isUser));
         dispatch(setLeagueList(leagues));
         dispatch(setSelectLeagueList(selectLeagues));

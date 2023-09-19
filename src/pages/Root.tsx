@@ -42,15 +42,22 @@ export default function Root() {
   const selectedLeague = useSelector(
     (state: RootState) => state.league.selectedLeague
   );
-  const colorObj = SidebarRoutes.find(
+
+  const selectedLeagueList = useSelector(
+    (state: RootState) => state.league.selectLeagueList
+  );
+
+  const colorObj = selectedLeagueList?.find(
     (el) => el.id.toString() === selectedLeague
   );
 
   useEffect(() => {
-    if (pathname === "/") {
-      navigate("/league/39");
+    if (pathname === "/" && selectedLeague) {
+      navigate(`/league/${selectedLeague}`);
     }
-  }, [navigate, pathname]);
+  }, [navigate, pathname, selectedLeague]);
+
+  console.log(selectedLeague);
 
   return (
     <RootWrapper $leagueColor={colorObj?.color}>
