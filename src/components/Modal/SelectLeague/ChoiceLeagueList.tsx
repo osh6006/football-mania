@@ -3,6 +3,12 @@ import { RootState } from "../../../store";
 
 import styled from "styled-components";
 import LeagueType from "./LeagueType";
+import { DBLeague } from "../../../type/dbleague";
+
+interface ChoiceLeagueListProps {
+  leagueList: DBLeague[] | null;
+  setLeagueList: (league: DBLeague[] | null) => void;
+}
 
 const ChoiceLeagueListWrapper = styled.ul`
   width: 100%;
@@ -22,7 +28,10 @@ const EmptyData = styled.p`
   color: ${(props) => props.theme.colors.gray};
 `;
 
-const ChoiceLeagueList = () => {
+const ChoiceLeagueList: React.FC<ChoiceLeagueListProps> = ({
+  leagueList,
+  setLeagueList,
+}) => {
   const leagueTypes = useSelector(
     (state: RootState) => state.league.leagueList
   );
@@ -34,7 +43,13 @@ const ChoiceLeagueList = () => {
   return (
     <ChoiceLeagueListWrapper>
       {leagueTypes.map((type) => (
-        <LeagueType league={type} key={type.id} role="add" />
+        <LeagueType
+          leagueList={leagueList}
+          setLeagueList={setLeagueList}
+          league={type}
+          key={type.id}
+          role="add"
+        />
       ))}
     </ChoiceLeagueListWrapper>
   );

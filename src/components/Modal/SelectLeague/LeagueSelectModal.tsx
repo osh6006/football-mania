@@ -1,7 +1,18 @@
+import { useState } from "react";
 import { darken, lighten } from "polished";
 import styled from "styled-components";
 import ChoiceLeagueList from "./ChoiceLeagueList";
 import MyLeagueList from "./MyLeagueList";
+import { DBLeague } from "../../../type/dbleague";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import {
+  getUserSelectLeague,
+  writeSelectLeagueList,
+} from "../../../api/firebase";
+import { setSelectLeagueList as setSelectLeagueListInRedux } from "../../../features/league/leagueSlice";
+import { selectUser } from "../../../features/user/userSlice";
+import Loading from "../../common/Loading";
 
 interface LeagueSelectModalProps {
   closeModal: () => void;
@@ -61,19 +72,49 @@ const CancelBtn = styled(ConfirmBtn)`
 const LeagueSelectModal: React.FC<LeagueSelectModalProps> = ({
   closeModal,
 }) => {
+  const dispatch = useDispatch();
+  const selectLeagueList = useSelector(
+    (state: RootState) => state.league.selectLeagueList
+  );
+  const user = useSelector(selectUser);
+  const [selectLeagues, setSelectLeague] = useState<DBLeague[] | null>(
+    selectLeagueList
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleSave = async () => {
+    setIsLoading(true);
+    const uid = user?.uid;
+    await writeSelectLeagueList(selectLeagues, uid);
+    const savedLeagueList = await getUserSelectLeague(uid);
+    dispatch(setSelectLeagueListInRedux(savedLeagueList));
+    setIsLoading(false);
+    closeModal();
+  };
+
   return (
     <ModalWraper>
       <Title>리그 골라 담기</Title>
       <SubTitle>좋아하는 리그를 골라보세요.</SubTitle>
       <br />
-      <Title>내가 선택한 리그</Title>
-      <MyLeagueList />
-      <br />
-      <Title>담을 수 있는 리그</Title>
-      <ChoiceLeagueList />
-
+      {isLoading && <Loading />}
+      {isLoading || (
+        <>
+          <Title>내가 선택한 리그</Title>
+          <MyLeagueList
+            leagueList={selectLeagues}
+            setLeagueList={setSelectLeague}
+          />
+          <br />
+          <Title>담을 수 있는 리그</Title>
+          <ChoiceLeagueList
+            leagueList={selectLeagues}
+            setLeagueList={setSelectLeague}
+          />
+        </>
+      )}
       <ButtonWrapper>
-        <ConfirmBtn>저장</ConfirmBtn>
+        <ConfirmBtn onClick={handleSave}>저장</ConfirmBtn>
         <CancelBtn onClick={closeModal}>취소</CancelBtn>
       </ButtonWrapper>
     </ModalWraper>

@@ -2,6 +2,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import styled from "styled-components";
 import LeagueType from "./LeagueType";
+import { DBLeague } from "../../../type/dbleague";
+
+interface MyLeagueListProps {
+  leagueList: DBLeague[] | null;
+  setLeagueList: (league: DBLeague[] | null) => void;
+}
 
 const MyLeagueListWrapper = styled.ul`
   display: flex;
@@ -17,12 +23,13 @@ const EmptyData = styled.p`
   color: ${(props) => props.theme.colors.gray};
 `;
 
-function MyLeagueList() {
+const MyLeagueList: React.FC<MyLeagueListProps> = ({
+  leagueList,
+  setLeagueList,
+}) => {
   const selectLeagueList = useSelector(
     (state: RootState) => state.league.selectLeagueList
   );
-
-  console.log(selectLeagueList);
 
   if (!selectLeagueList) {
     return <EmptyData>선택한 데이터가 없습니다.</EmptyData>;
@@ -30,11 +37,17 @@ function MyLeagueList() {
 
   return (
     <MyLeagueListWrapper>
-      {selectLeagueList.map((type) => (
-        <LeagueType league={type} key={type.id} role="delete" />
+      {leagueList?.map((type) => (
+        <LeagueType
+          leagueList={leagueList}
+          setLeagueList={setLeagueList}
+          league={type}
+          key={type.id}
+          role="delete"
+        />
       ))}
     </MyLeagueListWrapper>
   );
-}
+};
 
 export default MyLeagueList;

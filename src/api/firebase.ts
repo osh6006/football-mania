@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { getDatabase, ref, get, set } from "firebase/database";
 import { initLeague } from "../util/league";
+import { DBLeague } from "../type/dbleague";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -87,4 +88,14 @@ export async function getUserSelectLeague(userId?: string) {
   }
 
   return null;
+}
+
+// 유저가 선택한 리그들을 저장한다.
+export async function writeSelectLeagueList(
+  leagueList: DBLeague[] | null,
+  userId?: string
+) {
+  if (leagueList && leagueList.length > 0 && userId) {
+    set(ref(database, `footballMania/users/${userId}/league`), leagueList);
+  }
 }

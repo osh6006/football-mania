@@ -27,7 +27,10 @@ export const leagueSlice = createSlice({
       state.selectLeagueList = action.payload;
     },
     addLeagueTypes: (state, action: PayloadAction<DBLeague>) => {
-      state.selectLeagueList?.push(action.payload);
+      if (state.selectLeagueList?.find((el) => el.id !== action.payload.id)) {
+        state.selectLeagueList?.push(action.payload);
+      }
+      return;
     },
     deleteLeagueTypes: (state, action: PayloadAction<number>) => {
       if (state.selectLeagueList) {

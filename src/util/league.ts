@@ -1,3 +1,5 @@
+import { DBLeague } from "../type/dbleague";
+
 export const initLeague = [
   {
     color: "#44066A",
@@ -12,3 +14,17 @@ export const initLeague = [
     value: "epl",
   },
 ];
+
+export function isLeagueListIncludeId(
+  leagueList: DBLeague[],
+  league: DBLeague
+): boolean {
+  let result = false;
+  leagueList?.forEach((el) => {
+    if (el.id === league.id) {
+      result = true;
+    }
+  });
+
+  return result;
+}

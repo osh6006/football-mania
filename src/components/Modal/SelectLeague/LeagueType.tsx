@@ -2,18 +2,15 @@ import React from "react";
 import { DBLeague } from "../../../type/dbleague";
 import styled from "styled-components";
 
-import { useDispatch } from "react-redux";
-import {
-  addLeagueTypes,
-  deleteLeagueTypes,
-} from "../../../features/league/leagueSlice";
-
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose";
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
+import { isLeagueListIncludeId } from "../../../util/league";
 
 interface LeagueTypeProps {
   league: DBLeague;
   role: "add" | "delete";
+  leagueList: DBLeague[] | null;
+  setLeagueList: (league: DBLeague[] | null) => void;
 }
 
 interface LeagueColorProps {
@@ -45,15 +42,27 @@ const DeleteBtn = styled.button`
   }
 `;
 
-const LeagueType: React.FC<LeagueTypeProps> = ({ league, role }) => {
-  const dispatch = useDispatch();
-
+const LeagueType: React.FC<LeagueTypeProps> = ({
+  league,
+  role,
+  leagueList,
+  setLeagueList,
+}) => {
   const handleDelete = (id: number) => {
-    dispatch(deleteLeagueTypes(id));
+    // dispatch(deleteLeagueTypes(id));
+    if (leagueList && leagueList.length > 1) {
+      const filteredLeagueList = leagueList?.filter((el) => el.id !== id);
+      setLeagueList(filteredLeagueList);
+    }
   };
 
   const handleAdd = (league: DBLeague) => {
-    dispatch(addLeagueTypes(league));
+    // dispatch(addLeagueTypes(league));
+    if (leagueList && !isLeagueListIncludeId(leagueList, league)) {
+      const temp = [...leagueList];
+      temp.push(league);
+      setLeagueList(temp);
+    }
   };
 
   return (
