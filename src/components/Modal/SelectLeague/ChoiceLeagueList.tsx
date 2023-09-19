@@ -40,7 +40,7 @@ const ChoiceLeagueList: React.FC<ChoiceLeagueListProps> = ({
     ? leagueTypes?.filter((a) => !leagueList?.some((b) => a.id === b.id))
     : [];
 
-  if (!leagueTypes) {
+  if (filteredLeagueList?.length === 0) {
     return <EmptyData>선택 가능한 리그가 없습니다.</EmptyData>;
   }
 

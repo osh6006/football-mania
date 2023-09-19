@@ -57,8 +57,6 @@ export default function Root() {
     }
   }, [navigate, pathname, selectedLeague]);
 
-  console.log(selectedLeague);
-
   return (
     <RootWrapper $leagueColor={colorObj?.color}>
       <Sidebar />

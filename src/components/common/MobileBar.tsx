@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { AllRouteType, SecondSidebarRoutes } from "../../util/routeData";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
-import { lighten } from "polished";
+import { darken, lighten } from "polished";
 
 import { CgMenuRight } from "@react-icons/all-files/cg/CgMenuRight";
 import { useState } from "react";
@@ -9,10 +9,17 @@ import { useState } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Profile from "../Overview/Profile";
 import { firebaseLogout } from "../../api/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/user/userSlice";
 
 import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
+import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
+
+import { RootState } from "../../store";
+import useModal from "../../hooks/useModal";
+import Modal from "react-modal";
+import LeagueSelectModal from "../Modal/SelectLeague/LeagueSelectModal";
+import { CustomModalStyles } from "../../styles/modal";
 
 interface MobileBarProps {
   menus: AllRouteType[];
@@ -38,7 +45,7 @@ const commonBar = styled.nav`
 const TopBarWrapper = styled(commonBar)`
   top: 0;
   color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors.secondBackground};
+  background-color: ${(props) => props.theme.colors.background};
   z-index: 100;
   padding: 0 1rem;
 
@@ -109,12 +116,13 @@ const BottomBarWrapper = styled(commonBar)`
   bottom: 0;
   color: ${(props) => props.theme.colors.primary};
   z-index: 100;
-  background-color: ${(props) => props.theme.colors.secondBackground};
+  background-color: ${(props) => props.theme.colors.background};
 
   @media (max-width: 768px) {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 2rem;
     height: 80px;
     width: 100%;
   }
@@ -162,6 +170,24 @@ const BottomMenu = styled(NavLink)<MenuProps>`
   }}
 `;
 
+const LeftItems = styled.div`
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+`;
+
+const CenterItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RightItems = styled.div`
+  display: flex;
+  justify-content: start;
+  gap: 1rem;
+`;
+
 const MenuSvg = styled.img<MenuSvgProps>`
   scale: ${(props) => props.$scale};
 `;
@@ -181,7 +207,25 @@ const ProfileWrapper = styled.div`
   bottom: 10%;
 `;
 
-const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
+const AddLeagueBtn = styled.button`
+  width: 60px;
+  height: 60px;
+  padding: 8px;
+  bottom: 2rem;
+  color: white;
+  border-radius: ${(props) => props.theme.border.radius};
+  background-color: ${(props) =>
+    lighten(0.2, props.theme.colors.secondBackground)};
+  cursor: pointer;
+  transition: border 0.1s ease-out, background 0.2s linear,
+    color 0.3s ease-in-out;
+
+  &:hover {
+    background: ${(props) => darken(0.2, props.theme.colors.secondBackground)};
+  }
+`;
+
+const MobileBar: React.FC<MobileBarProps> = () => {
   const dispatch = useDispatch();
   const [navOpen, setNavOpen] = useState(false);
 
@@ -199,6 +243,12 @@ const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
   const title = pathname.split("/")[1];
   const subTitle = pathname.split("/")[3] || "";
   const leagueId = param.leagueId;
+
+  const selectLeagueList = useSelector(
+    (state: RootState) => state?.league?.selectLeagueList
+  );
+
+  const { openModal, closeModal, isOpen } = useModal();
 
   return (
     <>
@@ -232,20 +282,65 @@ const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
         </ProfileWrapper>
       </TopbarMenuWrapper>
       <BottomBarWrapper>
-        {menus &&
-          menus?.map((menu) => (
-            <BottomMenu
-              key={menu.name}
-              to={menu.path}
-              $selectColor={menu.color}
-            >
-              <MenuSvg
-                alt="League Logo"
-                src={menu.svg}
-                $scale={menu.$mobileScale}
-              />
-            </BottomMenu>
-          ))}
+        <LeftItems>
+          {selectLeagueList &&
+            selectLeagueList?.map((menu, i) => {
+              if (i <= 1) {
+                return (
+                  <BottomMenu
+                    key={menu.name}
+                    to={menu.path}
+                    $selectColor={menu.color}
+                  >
+                    <MenuSvg
+                      alt="League Logo"
+                      src={`${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
+                        import.meta.env.VITE_FIREBASE_SAVE_URL
+                      }o/${menu.imageName}?alt=media&token=${menu.imageToken}`}
+                      $scale={menu.mobileScale}
+                    />
+                  </BottomMenu>
+                );
+              }
+            })}
+        </LeftItems>
+        <CenterItem>
+          <AddLeagueBtn onClick={openModal}>
+            <AiOutlinePlus size={24} />
+          </AddLeagueBtn>
+        </CenterItem>
+        <RightItems>
+          {selectLeagueList &&
+            selectLeagueList?.map((menu, i) => {
+              if (i > 1 && i <= 3) {
+                return (
+                  <BottomMenu
+                    key={menu.name}
+                    to={menu.path}
+                    $selectColor={menu.color}
+                  >
+                    <MenuSvg
+                      alt="League Logo"
+                      src={`${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
+                        import.meta.env.VITE_FIREBASE_SAVE_URL
+                      }o/${menu.imageName}?alt=media&token=${menu.imageToken}`}
+                      $scale={menu.mobileScale}
+                    />
+                  </BottomMenu>
+                );
+              }
+            })}
+        </RightItems>
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          style={CustomModalStyles}
+          contentLabel="Example Modal"
+          ariaHideApp={false}
+          shouldCloseOnOverlayClick={true}
+        >
+          <LeagueSelectModal closeModal={closeModal} />
+        </Modal>
       </BottomBarWrapper>
     </>
   );

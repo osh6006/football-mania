@@ -13,6 +13,7 @@ import {
 import { setSelectLeagueList as setSelectLeagueListInRedux } from "../../../features/league/leagueSlice";
 import { selectUser } from "../../../features/user/userSlice";
 import Loading from "../../common/Loading";
+import MoveLeagueList from "./MoveLeagueList";
 
 interface LeagueSelectModalProps {
   closeModal: () => void;
@@ -108,6 +109,12 @@ const LeagueSelectModal: React.FC<LeagueSelectModalProps> = ({
           <br />
           <Title>담을 수 있는 리그</Title>
           <ChoiceLeagueList
+            leagueList={selectLeagues}
+            setLeagueList={setSelectLeague}
+          />
+          <br />
+          <Title>리그 이동하기</Title>
+          <MoveLeagueList
             leagueList={selectLeagues}
             setLeagueList={setSelectLeague}
           />

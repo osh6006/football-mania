@@ -5,10 +5,11 @@ import styled from "styled-components";
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose";
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
 import { isLeagueListIncludeId } from "../../../util/league";
+import { useNavigate } from "react-router-dom";
 
 interface LeagueTypeProps {
   league: DBLeague;
-  role: "add" | "delete";
+  role: "add" | "delete" | "move";
   leagueList: DBLeague[] | null;
   setLeagueList: (league: DBLeague[] | null) => void;
 }
@@ -48,6 +49,8 @@ const LeagueType: React.FC<LeagueTypeProps> = ({
   leagueList,
   setLeagueList,
 }) => {
+  const navigate = useNavigate();
+
   const handleDelete = (id: number) => {
     // dispatch(deleteLeagueTypes(id));
     if (leagueList && leagueList.length > 1) {
@@ -65,9 +68,24 @@ const LeagueType: React.FC<LeagueTypeProps> = ({
     }
   };
 
+  const handleMove = (id: number, role: "add" | "delete" | "move") => {
+    if (role === "move") {
+      navigate(`/league/${id}`);
+    }
+  };
+
   return (
-    <LeagueTypeWrapper $color={league.color}>
-      <p>{league.name}</p>
+    <LeagueTypeWrapper
+      $color={league.color}
+      onClick={() => handleMove(league.id, role)}
+    >
+      <p
+        style={{
+          textAlign: `${role === "move" ? "center" : "start"}`,
+        }}
+      >
+        {league.name}
+      </p>
       {role === "delete" && (
         <DeleteBtn onClick={() => handleDelete(league.id)}>
           <AiOutlineClose size={18} />
