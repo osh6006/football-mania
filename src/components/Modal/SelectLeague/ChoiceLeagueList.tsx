@@ -36,13 +36,17 @@ const ChoiceLeagueList: React.FC<ChoiceLeagueListProps> = ({
     (state: RootState) => state.league.leagueList
   );
 
+  const filteredLeagueList = leagueList
+    ? leagueTypes?.filter((a) => !leagueList?.some((b) => a.id === b.id))
+    : [];
+
   if (!leagueTypes) {
     return <EmptyData>선택 가능한 리그가 없습니다.</EmptyData>;
   }
 
   return (
     <ChoiceLeagueListWrapper>
-      {leagueTypes.map((type) => (
+      {filteredLeagueList?.map((type) => (
         <LeagueType
           leagueList={leagueList}
           setLeagueList={setLeagueList}
