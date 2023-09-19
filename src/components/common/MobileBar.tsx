@@ -6,8 +6,13 @@ import { lighten } from "polished";
 import { CgMenuRight } from "@react-icons/all-files/cg/CgMenuRight";
 import { useState } from "react";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import Profile from "../Overview/Profile";
+import { firebaseLogout } from "../../api/firebase";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/user/userSlice";
+
+import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
 
 interface MobileBarProps {
   menus: AllRouteType[];
@@ -47,7 +52,7 @@ const TopBarWrapper = styled(commonBar)`
 `;
 
 const TopbarTitle = styled.h1`
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: bold;
 `;
 const TopbarBtn = styled.button`
@@ -69,11 +74,12 @@ const TopbarBtn = styled.button`
 `;
 
 const TopbarMenuWrapper = styled.nav<TopBarMenuProps>`
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #333;
   color: white;
-  width: 50%;
+  width: 60%;
   height: 100vh;
   padding: 20px;
   position: fixed;
@@ -85,18 +91,18 @@ const TopbarMenuWrapper = styled.nav<TopBarMenuProps>`
   @media (min-width: 768px) {
     display: none;
   }
+
+  @media (max-width: 500px) {
+    width: 80%;
+  }
 `;
 
 const TopbarMenu = styled(Link)`
   display: flex;
   padding: 1.3rem 1.55rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   align-items: center;
   gap: 1rem;
-
-  @media (min-width: 460px) {
-    font-size: 1.5rem;
-  }
 `;
 
 const BottomBarWrapper = styled(commonBar)`
@@ -160,8 +166,29 @@ const MenuSvg = styled.img<MenuSvgProps>`
   scale: ${(props) => props.$scale};
 `;
 
+const LogOutBtn = styled.button`
+  display: flex;
+  padding: 1.3rem 1.55rem;
+  font-size: 1.5rem;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+`;
+
+const ProfileWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  bottom: 10%;
+`;
+
 const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
+  const dispatch = useDispatch();
   const [navOpen, setNavOpen] = useState(false);
+
+  const handleLogOut = async () => {
+    await firebaseLogout();
+    dispatch(logout());
+  };
 
   const handleClick = () => {
     setNavOpen(!navOpen);
@@ -169,7 +196,6 @@ const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
 
   const { pathname } = useLocation();
   const param = useParams();
-
   const title = pathname.split("/")[1];
   const subTitle = pathname.split("/")[3] || "";
   const leagueId = param.leagueId;
@@ -198,6 +224,12 @@ const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
             </TopbarMenu>
           </li>
         ))}
+        <ProfileWrapper>
+          <Profile />
+          <LogOutBtn onClick={handleLogOut}>
+            <BiLogOut size={30} />
+          </LogOutBtn>
+        </ProfileWrapper>
       </TopbarMenuWrapper>
       <BottomBarWrapper>
         {menus &&
