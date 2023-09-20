@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTopPlayer } from "../api/footballApi";
 import { Players } from "../type/player";
+import { getTopPlayer } from "../api/footballApi";
 
 function usePlayer(leagueId: number, season: number, type?: string) {
   let tempSeason = season;

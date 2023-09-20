@@ -4,6 +4,7 @@ import Loading from "../common/Loading";
 import { darken } from "polished";
 import SubTitle from "../common/SubTitle";
 import DetailLink from "../common/DetailLink";
+import useLeagueId from "../../hooks/useLeagueId";
 
 interface LiveSwitchProps {
   $isLive: boolean;
@@ -109,6 +110,8 @@ const Live = () => {
     fakeLiveMatchQuery: { data: matches, isLoading, isError },
   } = useFakeFixtures();
 
+  const leagueId = useLeagueId();
+
   return (
     <LiveWrapper>
       {isError && <>Error</>}
@@ -137,7 +140,7 @@ const Live = () => {
             </MatchWrapper>
             <LinkWrapper>
               <div></div>
-              <DetailLink name="자세히" src="" />
+              <DetailLink name="자세히" src={`/league/${leagueId}/live`} />
             </LinkWrapper>
           </>
         )) || (

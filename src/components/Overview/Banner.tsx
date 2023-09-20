@@ -7,6 +7,8 @@ import Title from "../common/Title";
 import SubTitle from "../common/SubTitle";
 import { timeStampToDate } from "../../util/date";
 import Button from "../common/Button";
+import { useNavigate } from "react-router-dom";
+import useLeagueId from "../../hooks/useLeagueId";
 
 // import useLeagueId from "../../hooks/useLeagueId";
 // import useFixtures from "../../hooks/useFixtures";
@@ -82,6 +84,8 @@ const Logo = styled.img`
 `;
 
 const Banner = () => {
+  const navigate = useNavigate();
+  const leagueId = useLeagueId();
   const color = useColor();
   // const leagueId = useLeagueId();
 
@@ -134,7 +138,9 @@ const Banner = () => {
           }
         />
         <ButtonWrapper>
-          <Button onClick={() => {}}>더 보기 &#8250;</Button>
+          <Button onClick={() => navigate(`/league/${leagueId}/schedule`)}>
+            더 보기 &#8250;
+          </Button>
         </ButtonWrapper>
       </TitleWrapper>
       <SecondWrapper>

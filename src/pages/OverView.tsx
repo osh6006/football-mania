@@ -8,6 +8,7 @@ import Profile from "../components/Overview/Profile";
 import Live from "../components/Overview/Live";
 import PlayerList from "../components/Overview/PlayerList";
 import SectionHeader from "../components/Overview/SectionHeader";
+import useLeagueId from "../hooks/useLeagueId";
 
 const OverViewWrapper = styled.div`
   position: relative;
@@ -65,6 +66,7 @@ const ProfileWrapper = styled.div`
 `;
 
 export default function OverView() {
+  const leagueId = useLeagueId();
   return (
     <OverViewWrapper>
       <ProfileWrapper>
@@ -78,7 +80,7 @@ export default function OverView() {
           <LatestMatches />
           <Live />
         </LeftSideTempWrapper>
-        <SectionHeader title="리그 순위" src="123" />
+        <SectionHeader title="리그 순위" src={`/league/${leagueId}/rank`} />
         <RankTable />
       </LeftSideWrapper>
       <RightSideWrapper>

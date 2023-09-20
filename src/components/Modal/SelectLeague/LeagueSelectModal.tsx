@@ -113,7 +113,7 @@ const LeagueSelectModal: React.FC<LeagueSelectModalProps> = ({
             setLeagueList={setSelectLeague}
           />
           <br />
-          <Title>리그 이동하기</Title>
+          <Title>선택한 리그로 이동</Title>
           <MoveLeagueList
             leagueList={selectLeagues}
             setLeagueList={setSelectLeague}

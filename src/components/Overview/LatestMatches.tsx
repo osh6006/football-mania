@@ -8,6 +8,7 @@ import Loading from "../common/Loading";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import useLeagueId from "../../hooks/useLeagueId";
 
 interface MatchProps {
   $color: string;
@@ -75,10 +76,11 @@ const LatestMatches = () => {
     fakeLatestMatchesQuery: { data: matches, isLoading, isError },
   } = useFakeFixtures();
   const color = useColor();
+  const leagueId = useLeagueId();
 
   return (
     <LatestMatchesWrapper>
-      <SectionHeader title="최근 경기" src="" />
+      <SectionHeader title="최근 경기" src={`/league/${leagueId}/schedule`} />
       {isError && <div>Error</div>}
       {isLoading && <Loading />}
       {isLoading ||

@@ -10,6 +10,7 @@ import useLeagueId from "../../hooks/useLeagueId";
 import { useNavigate } from "react-router-dom";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
+import usePlayer from "../../hooks/usePlayer";
 
 interface PlayerListProps {
   title: string;
@@ -62,14 +63,12 @@ const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
   } = useFakePlayer();
 
   // const {
-  //   topPlayerQuery: { data: players2, isLoading2, isError2 },
-  // } = usePlayer(39, new Date().getFullYear, type);
-
-  // console.log(players2);
+  //   topPlayerQuery: { data: players, isLoading, isError },
+  // } = usePlayer(leagueId, new Date().getFullYear(), type);
 
   return (
     <>
-      <SectionHeader title={title} src="" />
+      <SectionHeader title={title} src={`/league/${leagueId}/rank`} />
       <ScorerWrapper>
         {isError && <Error message="데이터가 없습니다!" />}
         {isLoading && <Loading />}

@@ -121,7 +121,11 @@ export async function getTopPlayer(
   season: number,
   type: string
 ) {
+  console.log(leagueId, season, type);
+
   if (leagueId && season && type) {
+    console.log(leagueId, season, type);
+
     const option = {
       ...basicOpt,
       url: `${import.meta.env.VITE_FOOTBALL_API_URL}players/${type}`,
