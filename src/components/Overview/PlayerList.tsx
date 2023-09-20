@@ -10,7 +10,7 @@ import useLeagueId from "../../hooks/useLeagueId";
 import { useNavigate } from "react-router-dom";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
-import usePlayer from "../../hooks/usePlayer";
+// import usePlayer from "../../hooks/usePlayer";
 
 interface PlayerListProps {
   title: string;

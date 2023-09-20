@@ -9,6 +9,7 @@ import { timeStampToDate } from "../../util/date";
 import Button from "../common/Button";
 import { useNavigate } from "react-router-dom";
 import useLeagueId from "../../hooks/useLeagueId";
+// import useFixtures from "../../hooks/useFixtures";
 
 // import useLeagueId from "../../hooks/useLeagueId";
 // import useFixtures from "../../hooks/useFixtures";
@@ -87,7 +88,6 @@ const Banner = () => {
   const navigate = useNavigate();
   const leagueId = useLeagueId();
   const color = useColor();
-  // const leagueId = useLeagueId();
 
   // const {
   //   bannerNextMatchesQuery: { data: matches, isLoading, error },

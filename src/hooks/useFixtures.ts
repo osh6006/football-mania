@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getLatestMatches, getNextMatches } from "../api/footballApi";
+import {
+  getLatestMatches,
+  getLiveMatches,
+  getNextMatches,
+} from "../api/footballApi";
 
 export default function useFixtures(leagueId: number) {
   // const queryClient = useQueryClient();
@@ -7,7 +11,7 @@ export default function useFixtures(leagueId: number) {
   const year = new Date().getFullYear();
 
   const bannerNextMatchesQuery = useQuery({
-    queryKey: ["bannerLatestMatch"],
+    queryKey: ["bannerNextMatches", leagueId],
     queryFn: () => getNextMatches(leagueId, year, 2),
     enabled: !!leagueId,
     staleTime: 1000 * 60,
@@ -16,5 +20,29 @@ export default function useFixtures(leagueId: number) {
     },
   });
 
-  return { bannerNextMatchesQuery };
+  const bannerLatestMatchesQuery = useQuery({
+    queryKey: ["bannerLatestMatches", leagueId],
+    queryFn: () => getLatestMatches(leagueId, year, 2),
+    enabled: !!leagueId,
+    staleTime: 1000 * 60,
+    select(data) {
+      return data.response;
+    },
+  });
+
+  const bannerLiveMatchQuery = useQuery({
+    queryKey: ["bannerLiveMatch", leagueId],
+    queryFn: () => getLiveMatches(leagueId, year),
+    enabled: !!leagueId,
+    staleTime: 1000 * 60,
+    select(data) {
+      return data.response;
+    },
+  });
+
+  return {
+    bannerNextMatchesQuery,
+    bannerLatestMatchesQuery,
+    bannerLiveMatchQuery,
+  };
 }

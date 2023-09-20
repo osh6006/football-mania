@@ -16,6 +16,7 @@ import { Standing } from "../../type/standings";
 import useFakeStandings from "../../hooks/fake/useFakeStandings";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
+// import useTeam from "../../hooks/useTeam";
 
 interface TableProps {
   $color: string;
@@ -120,9 +121,14 @@ const RankTable = () => {
   const {
     fakeStandingsQuery: { data: teams, isLoading, isError },
   } = useFakeStandings();
+
   const leagueId = useLeagueId();
   const color = useColor();
   const navigate = useNavigate();
+
+  // const {
+  //   teamRankQuery: { data: teams, isLoading, isError },
+  // } = useTeam(leagueId, new Date().getFullYear());
 
   return (
     <RankTableWrapper>

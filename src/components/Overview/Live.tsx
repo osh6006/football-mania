@@ -5,6 +5,7 @@ import { darken } from "polished";
 import SubTitle from "../common/SubTitle";
 import DetailLink from "../common/DetailLink";
 import useLeagueId from "../../hooks/useLeagueId";
+// import useFixtures from "../../hooks/useFixtures";
 
 interface LiveSwitchProps {
   $isLive: boolean;
@@ -106,11 +107,15 @@ const LinkWrapper = styled.div`
 `;
 
 const Live = () => {
+  const leagueId = useLeagueId();
+
   const {
     fakeLiveMatchQuery: { data: matches, isLoading, isError },
   } = useFakeFixtures();
 
-  const leagueId = useLeagueId();
+  // const {
+  //   bannerLiveMatchQuery: { data: matches, isLoading, isError },
+  // } = useFixtures(leagueId);
 
   return (
     <LiveWrapper>
