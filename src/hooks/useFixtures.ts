@@ -4,6 +4,7 @@ import {
   getLiveMatches,
   getNextMatches,
 } from "../api/footballApi";
+import { LiveMatch } from "../type/fixtures";
 
 export default function useFixtures(leagueId: number) {
   // const queryClient = useQueryClient();
@@ -40,9 +41,20 @@ export default function useFixtures(leagueId: number) {
     },
   });
 
+  const liveMatchesQuery = useQuery({
+    queryKey: ["LiveMatches", leagueId],
+    queryFn: () => getLiveMatches(leagueId, year),
+    enabled: !!leagueId,
+    staleTime: 1000 * 60,
+    select(data): LiveMatch[] {
+      return data.response;
+    },
+  });
+
   return {
     bannerNextMatchesQuery,
     bannerLatestMatchesQuery,
     bannerLiveMatchQuery,
+    liveMatchesQuery,
   };
 }

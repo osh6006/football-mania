@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import { BsChevronDown } from "@react-icons/all-files/bs/BsChevronDown";
-import useLive from "../../hooks/useLive";
+// import useLive from "../../hooks/useLive";
 import useFakeLive from "../../hooks/fake/useFakeLive";
 import LineUp from "./LineUp";
 import HeadToHead from "./HeadToHead";
@@ -72,7 +72,10 @@ const LiveWrapper = styled.div`
   border-radius: ${(props) => props.theme.border.radius};
 `;
 
-const MatchAccordion: React.FC<MatchAccordionProps> = ({ title, fixturesId }) => {
+const MatchAccordion: React.FC<MatchAccordionProps> = ({
+  title,
+  // fixturesId,
+}) => {
   // const {
   //   liveScoreQuery: { data: liveData, isError, isLoading },
   // } = useLive(fixturesId);
@@ -104,9 +107,12 @@ const MatchAccordion: React.FC<MatchAccordionProps> = ({ title, fixturesId }) =>
             </AccordionIcon>
           </AccordionHeader>
           <AccordionContent $isOpen={isOpen}>
-            <HeadToHead team={liveData && liveData[0].teams} score={liveData && liveData[0].score} />
+            <HeadToHead
+              team={liveData && liveData[0].teams}
+              score={liveData && liveData[0].score}
+            />
             <Event events={liveData && liveData[0].events} />
-            <LineUp lineUp={liveData && liveData[0].lineups} />
+            <LineUp lineUps={liveData && liveData[0]?.lineups} />
           </AccordionContent>
         </>
       )}

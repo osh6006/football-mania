@@ -5,6 +5,8 @@ import Error from "../components/common/Error";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
 import Loading from "../components/common/Loading";
+// import useLeagueId from "../hooks/useLeagueId";
+// import useFixtures from "../hooks/useFixtures";
 
 const LiveWrapper = styled.section`
   padding: 1rem 1rem;
@@ -22,6 +24,12 @@ const MatchesWrapper = styled.div`
 `;
 
 export default function Live() {
+  // const leagueId = useLeagueId();
+
+  // const {
+  //   liveMatchesQuery: { data: matches, isError, isLoading },
+  // } = useFixtures(leagueId);
+
   const {
     fakeLiveMatchQuery: { data: matches, isError, isLoading },
   } = useFakeFixtures();
@@ -47,6 +55,7 @@ export default function Live() {
               }
             ></MatchAccordion>
           ))}
+          {matches?.length === 0 && <div>현재 진행중인 경기가 없습니다.</div>}
         </MatchesWrapper>
       )}
     </LiveWrapper>
