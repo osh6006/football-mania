@@ -53,8 +53,8 @@ function useTeam(leagueId?: number, season?: number, teamId?: string) {
   });
 
   const teamStandingsQuery = useQuery({
-    queryKey: ["TeamStandings"],
-    queryFn: () => getTeamStandings(),
+    queryKey: ["TeamStandings", teamId, season],
+    queryFn: () => getTeamStandings(teamId, season),
     staleTime: 1000 * 60,
     select(data): TeamStanding[] {
       return data;

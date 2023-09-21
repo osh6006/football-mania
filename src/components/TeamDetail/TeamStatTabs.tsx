@@ -146,7 +146,7 @@ const TeamStatTabs: React.FC<StatTabsProps> = ({
               </Cell>
               <Cell>
                 <Superscript>최근 경기</Superscript>
-                {stat?.form}
+                {stat?.form.slice(0, 5)}
               </Cell>
             </Row>
           </>
