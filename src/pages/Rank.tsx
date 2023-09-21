@@ -4,7 +4,6 @@ import useColor from "../hooks/useColor";
 import { lighten } from "polished";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
-import useLeagueId from "../hooks/useLeagueId";
 import SeasonSelector from "../components/common/SeasonSelector";
 import { getAllSeason } from "../api/footballApi";
 import TeamRankTable from "../components/Rank/TeamRankTable";
@@ -49,8 +48,6 @@ const TabBtn = styled.button<TabBtnProps>`
 
 export default function Rank() {
   const color = useColor();
-  const leagueId = useLeagueId();
-
   const [currentRank, setCurrentRank] = useState<currentRank>("team");
   const { seasonRange, selectSeason, setSeasonRange, setSelectSeason } =
     useSeason();
@@ -59,11 +56,11 @@ export default function Rank() {
     setCurrentRank(currRank);
   };
 
-  // useEffect(() => {
-  //   getAllSeason()
-  //     .then((result: number[]) => setSeasonRange(result))
-  //     .catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    getAllSeason()
+      .then((result: number[]) => setSeasonRange(result))
+      .catch((error) => console.log(error));
+  }, [setSeasonRange]);
 
   return (
     <RankWrapper>

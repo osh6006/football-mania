@@ -168,9 +168,9 @@ const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
     topScorerQuery: { data: players, isLoading, isError },
   } = useFakePlayer();
 
-  //   const {
-  //     topPlayerQuery: { data: players, isLoading, isError },
-  //   } = usePlayer(leagueId, selectSeason, playerType);
+  // const {
+  //   topPlayerQuery: { data: players, isLoading, isError },
+  // } = usePlayer(leagueId, selectSeason, playerType);
 
   return (
     <>
