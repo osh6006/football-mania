@@ -99,10 +99,11 @@ export default function TeamDetail() {
         teamStatLoading ||
         teamLatestMatchesLoading ||
         (teamStandingsLoading && <Loading />)}
-      {teamInfoLoading ||
-        teamInfoLoading ||
-        teamLatestMatchesLoading ||
-        (teamInfo && (
+      {!teamInfoLoading &&
+        !teamInfoLoading &&
+        !teamLatestMatchesLoading &&
+        !teamStandingsLoading &&
+        teamInfo && (
           <>
             <TagTitle>팀 정보</TagTitle>
             <TeamBasicInfo teamInfo={teamInfo} />
@@ -123,7 +124,7 @@ export default function TeamDetail() {
             <br />
             <TeamLatestMatches matches={teamLatestMatches} />
           </>
-        ))}
+        )}
     </TeamDetailWrapper>
   );
 }

@@ -27,16 +27,14 @@ export default function PlayerDetail() {
   const { seasonRange, selectSeason, setSeasonRange, setSelectSeason } =
     useSeason();
 
-  //   const {
-  //     playerDetailQuery: { data: detail, isError, isLoading },
-  //   } = usePlayerDetail(Number(params.playerId), selectSeason);
+  // const {
+  //   playerDetailQuery: { data: detail, isError, isLoading },
+  // } = usePlayerDetail(Number(params.playerId), selectSeason);
 
-  //   console.log(detail);
+  // console.log(detail);
 
   // const {
-  //   playerTrophieQuery: {
-  //     data: trophies,
-  //   },
+  //   playerTrophieQuery: { data: trophies },
   // } = usePlayerDetail(Number(params.playerId), selectSeason);
 
   const {

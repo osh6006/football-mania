@@ -16,6 +16,7 @@ const CareerTableWrapper = styled.div`
 `;
 
 const Career = styled.p`
+  margin: 4px 0;
   text-align: center;
 `;
 
