@@ -16,6 +16,7 @@ import { Standing } from "../../type/standings";
 import useFakeStandings from "../../hooks/fake/useFakeStandings";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
+import Form from "../Rank/Form";
 // import useTeam from "../../hooks/useTeam";
 
 interface TableProps {
@@ -180,7 +181,16 @@ const RankTable = () => {
                           {team.goalsDiff}
                         </TabletOnlyTableCell>
                         <TableCell>{team.points}</TableCell>
-                        <DesktopOnlyTableCell>{team.form}</DesktopOnlyTableCell>
+                        <DesktopOnlyTableCell>
+                          {team.form
+                            .split("")
+                            .splice(0, 2)
+                            .map((item, i) => {
+                              return (
+                                <Form type={item} contents={item} key={i} />
+                              );
+                            })}
+                        </DesktopOnlyTableCell>
                       </TableRow>
                     )
                 )}

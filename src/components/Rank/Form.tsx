@@ -15,6 +15,7 @@ const FormWrapper = styled.span<FormStyleProps>`
   align-items: center;
   width: 30px;
   height: 30px;
+  padding: 1px;
   margin: 0 2px;
   border-radius: 50%;
 
