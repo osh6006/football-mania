@@ -9,6 +9,8 @@ import Live from "../components/Overview/Live";
 import PlayerList from "../components/Overview/PlayerList";
 import SectionHeader from "../components/Overview/SectionHeader";
 import useLeagueId from "../hooks/useLeagueId";
+import { selectUser } from "../features/user/userSlice";
+import { useSelector } from "react-redux";
 
 const OverViewWrapper = styled.div`
   position: relative;
@@ -67,14 +69,16 @@ const ProfileWrapper = styled.div`
 
 export default function OverView() {
   const leagueId = useLeagueId();
+  const user = useSelector(selectUser);
+
   return (
     <OverViewWrapper>
       <ProfileWrapper>
         <Profile />
       </ProfileWrapper>
       <LeftSideWrapper>
-        <Title title="어서오세요 Test 님 !" />
-        <SubTitle subtitle="다시 오신 것을 환영합니다." />
+        <Title title={`어서오세요 ${user?.displayName}님 !`} />
+        <SubTitle subtitle="Football Mania에 오신 것을 환영합니다." />
         <Banner />
         <LeftSideTempWrapper>
           <LatestMatches />
