@@ -87,7 +87,7 @@ const Logo = styled.img`
 const Banner = () => {
   const navigate = useNavigate();
   const leagueId = useLeagueId();
-  const color = useColor();
+  const color = useColor() || "#FFF";
 
   // const {
   //   bannerNextMatchesQuery: { data: matches, isLoading, error },
@@ -99,7 +99,7 @@ const Banner = () => {
 
   if (error) {
     return (
-      <BannerWrapper $color={color || "#FFFFFF"}>
+      <BannerWrapper $color={color}>
         <>Error!</>
       </BannerWrapper>
     );
@@ -107,14 +107,14 @@ const Banner = () => {
 
   if (isLoading) {
     return (
-      <BannerWrapper $color={color || "#FFFFFF"}>
+      <BannerWrapper $color={color}>
         <Loading />
       </BannerWrapper>
     );
   }
 
   return (
-    <BannerWrapper $color={color || "#FFFFFF"}>
+    <BannerWrapper $color={color}>
       <TitleWrapper>
         <HeaderWrapper>
           <Title title="다음 경기" />

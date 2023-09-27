@@ -4,6 +4,7 @@ export interface DBLeague {
   path: string;
   color: string;
   imageName: string;
+  imagePath: string;
   imageToken: string;
   mobileScale: number;
   scale: number;

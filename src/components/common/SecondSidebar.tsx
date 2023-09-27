@@ -1,9 +1,11 @@
 import styled, { css } from "styled-components";
 import { NavLink, useLocation, useParams } from "react-router-dom";
-import { SecondSidebarRoutes, SidebarRoutes } from "../../util/routeData";
+import { SecondSidebarRoutes } from "../../util/routeData";
 import { rgba, lighten } from "polished";
 import Title from "./Title";
 import SubTitle from "./SubTitle";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
 
 interface SecondSidebarProps {}
 
@@ -58,7 +60,12 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   const title = pathname.split("/")[1];
   const subTitle = pathname.split("/")[3] || "";
   const leagueId = param.leagueId;
-  const colorObj = SidebarRoutes.find((el) => el.id.toString() === leagueId);
+  const selectLeagueList = useSelector(
+    (state: RootState) => state?.league?.selectLeagueList
+  );
+  const colorObj = selectLeagueList?.find(
+    (el) => el.id.toString() === leagueId
+  );
 
   return (
     <SecondSidebarWrapper>

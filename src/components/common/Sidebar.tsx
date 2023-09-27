@@ -111,6 +111,7 @@ const Menu = styled(NavLink)<MenuProps>`
 `;
 
 const MenuSvg = styled.img<MenuSvgProps>`
+  max-width: 25px;
   scale: ${(props) => props.$scale};
 `;
 
@@ -150,6 +151,8 @@ const Sidebar = () => {
     dispatch(logout());
   };
 
+  console.log(selectLeagueList);
+
   return (
     <SidebarWrapper>
       <LeagueSidebarWrapper>
@@ -164,9 +167,15 @@ const Sidebar = () => {
                   <Menu to={menu.path} $selectColor={menu.color}>
                     <MenuSvg
                       alt="league Logo"
-                      src={`${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
-                        import.meta.env.VITE_FIREBASE_SAVE_URL
-                      }o/${menu.imageName}?alt=media&token=${menu.imageToken}`}
+                      src={
+                        menu.imageToken === ""
+                          ? menu.imagePath
+                          : `${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
+                              import.meta.env.VITE_FIREBASE_SAVE_URL
+                            }o/${menu.imageName}?alt=media&token=${
+                              menu.imageToken
+                            }`
+                      }
                       $scale={menu.scale}
                     />
                   </Menu>
