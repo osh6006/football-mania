@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose";
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
+import { AiOutlineLink } from "@react-icons/all-files/ai/AiOutlineLink";
+
 import { isLeagueListIncludeId } from "../../../util/league";
 import { useNavigate } from "react-router-dom";
 
@@ -75,10 +77,7 @@ const LeagueType: React.FC<LeagueTypeProps> = ({
   };
 
   return (
-    <LeagueTypeWrapper
-      $color={league.color}
-      onClick={() => handleMove(league.id, role)}
-    >
+    <LeagueTypeWrapper $color={league.color}>
       <p
         style={{
           textAlign: `${role === "move" ? "center" : "start"}`,
@@ -95,6 +94,12 @@ const LeagueType: React.FC<LeagueTypeProps> = ({
       {role === "add" && (
         <DeleteBtn onClick={() => handleAdd(league)}>
           <AiOutlinePlus size={18} />
+        </DeleteBtn>
+      )}
+
+      {role === "move" && (
+        <DeleteBtn onClick={() => handleMove(league.id, role)}>
+          <AiOutlineLink size={18} />
         </DeleteBtn>
       )}
     </LeagueTypeWrapper>
