@@ -51,7 +51,6 @@ export async function initSelectLeague(user: User | null) {
 
   // 유저가 선택한 리그가 없으면 초기화
   if (!selectLeague) {
-    console.log("init!");
     await initUserSelectLeague(user?.uid);
   }
 }

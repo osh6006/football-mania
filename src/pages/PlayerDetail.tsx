@@ -30,8 +30,6 @@ export default function PlayerDetail() {
   //   playerDetailQuery: { data: detail, isError, isLoading },
   // } = usePlayerDetail(Number(params.playerId), selectSeason);
 
-  // console.log(detail);
-
   // const {
   //   playerTrophieQuery: { data: trophies },
   // } = usePlayerDetail(Number(params.playerId), selectSeason);

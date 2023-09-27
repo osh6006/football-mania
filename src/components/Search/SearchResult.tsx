@@ -53,10 +53,6 @@ const SearchResult: React.FC<SearchResultProps> = () => {
   //   searchQuery: { data: players, isError, isLoading },
   // } = useFakeSearch();
 
-  // console.log(players);
-  // console.log(coachs);
-  // console.log(teams);
-
   return (
     <SearchResultWrapper>
       {/* {isLoading && <Loading />}

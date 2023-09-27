@@ -151,8 +151,6 @@ const Sidebar = () => {
     dispatch(logout());
   };
 
-  console.log(selectLeagueList);
-
   return (
     <SidebarWrapper>
       <LeagueSidebarWrapper>

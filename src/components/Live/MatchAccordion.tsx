@@ -80,8 +80,6 @@ const MatchAccordion: React.FC<MatchAccordionProps> = ({
   //   liveScoreQuery: { data: liveData, isError, isLoading },
   // } = useLive(fixturesId);
 
-  // console.log(liveData);
-
   const {
     liveScoreQuery: { data: liveData, isError, isLoading },
   } = useFakeLive();
@@ -90,8 +88,6 @@ const MatchAccordion: React.FC<MatchAccordionProps> = ({
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
-
-  console.log(liveData);
 
   return (
     <AccordionContainer>
