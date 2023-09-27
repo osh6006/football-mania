@@ -12,7 +12,7 @@ interface MenuProps {
 }
 
 const SecondSidebarWrapper = styled.nav`
-  min-width: 250px;
+  width: 250px;
   display: flex;
   flex-direction: column;
 `;
@@ -63,7 +63,7 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   return (
     <SecondSidebarWrapper>
       <TitleWrapper>
-        <Title title={"Football Mania "} />
+        <Title medium title={"Football Mania "} />
         <SubTitle subtitle={`축구에 대한 모든 것.`} />
       </TitleWrapper>
 

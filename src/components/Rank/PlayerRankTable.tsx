@@ -48,12 +48,11 @@ const RankTableWrapper = styled.div`
   font-family: sans-serif;
   font-weight: bold;
   border-radius: 10px;
-  overflow: hidden;
 `;
 
 const StyledTableContainer = styled.div`
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: auto;
 `;
 
 const Table = styled.table`
