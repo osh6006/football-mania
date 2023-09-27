@@ -14,6 +14,7 @@ import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
 // import useTeam from "../../hooks/useTeam";
 import useLeagueId from "../../hooks/useLeagueId";
 import { useNavigate } from "react-router-dom";
+import Form from "./Form";
 
 interface TeamRankTableProps {
   selectSeason: number;
@@ -193,7 +194,16 @@ const TeamRankTable: React.FC<TeamRankTableProps> = () => {
                           {team.goalsDiff}
                         </TabletOnlyTableCell>
                         <TableCell>{team.points}</TableCell>
-                        <DesktopOnlyTableCell>{team.form}</DesktopOnlyTableCell>
+                        <DesktopOnlyTableCell>
+                          {team.form
+                            .split("")
+                            .splice(0, 4)
+                            .map((item, i) => {
+                              return (
+                                <Form type={item} contents={item} key={i} />
+                              );
+                            })}
+                        </DesktopOnlyTableCell>
                       </TableRow>
                     )
                 )}
