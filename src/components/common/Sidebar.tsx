@@ -13,7 +13,7 @@ import { firebaseLogout } from "../../api/firebase";
 import { darken, lighten } from "polished";
 import styled, { css } from "styled-components";
 
-import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
+import { AiOutlineAppstoreAdd } from "@react-icons/all-files/ai/AiOutlineAppstoreAdd";
 import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
 import { RiFootballFill } from "@react-icons/all-files/ri/RiFootballFill";
 
@@ -160,27 +160,30 @@ const Sidebar = () => {
         <Navigation>
           <MenuWrapper>
             {selectLeagueList &&
-              selectLeagueList?.map((menu) => (
-                <li key={menu.id}>
-                  <Menu to={menu.path} $selectColor={menu.color}>
-                    <MenuSvg
-                      alt="league Logo"
-                      src={
-                        menu.imageToken === ""
-                          ? menu.imagePath
-                          : `${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
-                              import.meta.env.VITE_FIREBASE_SAVE_URL
-                            }o/${menu.imageName}?alt=media&token=${
-                              menu.imageToken
-                            }`
-                      }
-                      $scale={menu.scale}
-                    />
-                  </Menu>
-                </li>
-              ))}
+              selectLeagueList?.map((menu, i) => {
+                if (i < 6)
+                  return (
+                    <li key={menu.id}>
+                      <Menu to={menu.path} $selectColor={menu.color}>
+                        <MenuSvg
+                          alt="league Logo"
+                          src={
+                            menu.imageToken === ""
+                              ? menu.imagePath
+                              : `${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
+                                  import.meta.env.VITE_FIREBASE_SAVE_URL
+                                }o/${menu.imageName}?alt=media&token=${
+                                  menu.imageToken
+                                }`
+                          }
+                          $scale={menu.scale}
+                        />
+                      </Menu>
+                    </li>
+                  );
+              })}
             <AddLeagueBtn onClick={openModal}>
-              <AiOutlinePlus size={25} />
+              <AiOutlineAppstoreAdd size={25} />
             </AddLeagueBtn>
           </MenuWrapper>
           <LogOutBtn onClick={handleLogout}>
