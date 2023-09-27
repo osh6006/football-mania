@@ -7,7 +7,7 @@ export default function useInjuries(teamId?: number, season?: number) {
     queryKey: ["teamLineUp", teamId],
     queryFn: () => getTeamInjuries(teamId, season),
     enabled: !!teamId && !!season,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Injury[] {
       return data;
     },

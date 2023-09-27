@@ -8,7 +8,7 @@ export default function usePlayerDetail(playerId: number, season: number) {
     queryKey: ["playerDetail", playerId, season],
     queryFn: () => getPlayerDetail(playerId, season),
     enabled: !!playerId && !!season,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Players[] {
       return data;
     },
@@ -18,7 +18,7 @@ export default function usePlayerDetail(playerId: number, season: number) {
     queryKey: ["playerTrophie", playerId],
     queryFn: () => getPlayerTrophies(playerId),
     enabled: !!playerId,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Trophie[] {
       return data;
     },

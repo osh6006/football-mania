@@ -12,7 +12,7 @@ function usePlayer(leagueId: number, season: number, type?: string) {
     queryKey: ["topPlayer", leagueId, tempSeason, type],
     queryFn: () => getTopPlayer(leagueId, tempSeason, type || "topscorers"),
     enabled: !!leagueId && !!type && !!season,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Players[] {
       return data.response;
     },

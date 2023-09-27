@@ -16,7 +16,7 @@ function useTeam(leagueId?: number, season?: number, teamId?: string) {
     queryKey: ["teamRank", leagueId, season],
     queryFn: () => getLeagueRanking(leagueId, season),
     enabled: !!leagueId && !!season,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Standings[] {
       return data.response;
     },
@@ -26,7 +26,7 @@ function useTeam(leagueId?: number, season?: number, teamId?: string) {
     queryKey: ["teamInfo", teamId],
     queryFn: () => getTeamInfo(teamId),
     enabled: !!teamId,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): TeamInfo {
       return data;
     },
@@ -36,7 +36,7 @@ function useTeam(leagueId?: number, season?: number, teamId?: string) {
     queryKey: ["teamStat", leagueId, teamId, season],
     queryFn: () => getTeamStat(leagueId, teamId, season),
     enabled: !!leagueId && !!season && !!teamId,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): TeamStat {
       return data;
     },
@@ -46,7 +46,7 @@ function useTeam(leagueId?: number, season?: number, teamId?: string) {
     queryKey: ["teamLatestMatches", teamId, season],
     queryFn: () => getTeamLatestMatches(teamId, season),
     enabled: !!teamId && !!season,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Match[] {
       return data;
     },
@@ -55,7 +55,7 @@ function useTeam(leagueId?: number, season?: number, teamId?: string) {
   const teamStandingsQuery = useQuery({
     queryKey: ["TeamStandings", teamId, season],
     queryFn: () => getTeamStandings(teamId, season),
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): TeamStanding[] {
       return data;
     },

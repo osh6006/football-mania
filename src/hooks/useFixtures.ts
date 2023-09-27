@@ -15,7 +15,7 @@ export default function useFixtures(leagueId: number) {
     queryKey: ["bannerNextMatches", leagueId],
     queryFn: () => getNextMatches(leagueId, year, 2),
     enabled: !!leagueId,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data) {
       return data.response;
     },
@@ -25,7 +25,7 @@ export default function useFixtures(leagueId: number) {
     queryKey: ["bannerLatestMatches", leagueId],
     queryFn: () => getLatestMatches(leagueId, year, 2),
     enabled: !!leagueId,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data) {
       return data.response;
     },

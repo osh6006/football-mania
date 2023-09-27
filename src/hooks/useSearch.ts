@@ -13,7 +13,7 @@ export default function useSearch(leagueId: number, searchValue: string) {
     queryKey: ["searchPlayer", leagueId, searchValue],
     queryFn: () => getSearchPlayer(leagueId, searchValue),
     enabled: !!leagueId && !!searchValue,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Players[] {
       return data;
     },
@@ -23,7 +23,7 @@ export default function useSearch(leagueId: number, searchValue: string) {
     queryKey: ["searchCoach", leagueId, searchValue],
     queryFn: () => getSearchCoach(leagueId, searchValue),
     enabled: !!leagueId && !!searchValue,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): Coach[] {
       return data;
     },
@@ -33,7 +33,7 @@ export default function useSearch(leagueId: number, searchValue: string) {
     queryKey: ["topPlayer", leagueId, searchValue],
     queryFn: () => getCoachTeam(leagueId, searchValue),
     enabled: !!leagueId && !!searchValue,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data): SearchTeam[] {
       return data.response;
     },

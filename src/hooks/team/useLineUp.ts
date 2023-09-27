@@ -7,7 +7,7 @@ export default function useLineUp(fixturesId: number) {
     queryKey: ["teamLineUp", fixturesId],
     queryFn: () => getTeamLineUp(fixturesId),
     enabled: !!fixturesId,
-    staleTime: 1000 * 60,
+    staleTime: Infinity,
     select(data: LiveMatch[]): LiveMatch {
       return data[0];
     },
