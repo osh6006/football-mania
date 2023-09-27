@@ -42,12 +42,14 @@ const Event: React.FC<EventProps> = ({ events }) => {
       <TempDiv></TempDiv>
       <EventContentsWrapper>
         {events &&
-          events.map((event) => (
-            <EventContents key={event.time.elapsed}>
+          events.map((event, i) => (
+            <EventContents key={i}>
               <Logo src={event.team.logo} alt="TeamLogo" effect="blur" />
-              {`${event.time.elapsed}" ${event.comments === null ? "" : event.comments} ${
-                event.detail === null ? "" : event.detail
-              } - ${event.player.name}`}
+              {`${event.time.elapsed}" ${
+                event.comments === null ? "" : event.comments
+              } ${event.detail === null ? "" : event.detail} - ${
+                event.player.name
+              }`}
             </EventContents>
           ))}
       </EventContentsWrapper>
