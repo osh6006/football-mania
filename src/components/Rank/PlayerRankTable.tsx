@@ -10,7 +10,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 import useFakePlayer from "../../hooks/fake/useFakePlayer";
 import useLeagueId from "../../hooks/useLeagueId";
-import usePlayer from "../../hooks/usePlayer";
+// import usePlayer from "../../hooks/usePlayer";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
 import { useNavigate } from "react-router-dom";
@@ -154,7 +154,7 @@ const Logo = styled(LazyLoadImage)`
   width: 30px;
 `;
 
-const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
+const PlayerRankTable: React.FC<PlayerRankTableProps> = () => {
   const color = useColor();
   const leagueId = useLeagueId();
   const navigate = useNavigate();

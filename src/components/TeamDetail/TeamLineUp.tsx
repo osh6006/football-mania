@@ -1,7 +1,7 @@
 import React from "react";
-import useLineUp from "../../hooks/team/useLineUp";
-import Loading from "../common/Loading";
-import Error from "../common/Error";
+// import useLineUp from "../../hooks/team/useLineUp";
+// import Loading from "../common/Loading";
+// import Error from "../common/Error";
 import { styled } from "styled-components";
 
 interface TeamLineUpProps {
@@ -15,41 +15,41 @@ const TeamLineUpWrapper = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h3`
-  font-size: 1.2rem;
-`;
+// const Title = styled.h3`
+//   font-size: 1.2rem;
+// `;
 
-const PlayersWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
+// const PlayersWrapper = styled.div`
+//   display: flex;
+//   gap: 1rem;
+// `;
 
-const StartMember = styled.div`
-  flex: 1;
-`;
-const SubMember = styled.div`
-  flex: 1;
-`;
+// const StartMember = styled.div`
+//   flex: 1;
+// `;
+// const SubMember = styled.div`
+//   flex: 1;
+// `;
 
-const NameWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 0.5rem 0;
-`;
-const Name = styled.p``;
+// const NameWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+//   gap: 1rem;
+//   margin: 0.5rem 0;
+// `;
+// const Name = styled.p``;
 
-const Number = styled.p`
-  color: ${(props) => props.theme.colors.gray};
-  font-weight: bold;
-`;
+// const Number = styled.p`
+//   color: ${(props) => props.theme.colors.gray};
+//   font-weight: bold;
+// `;
 
-const Profile = styled.img`
-  width: 35px;
-  border-radius: 50%;
-`;
+// const Profile = styled.img`
+//   width: 35px;
+//   border-radius: 50%;
+// `;
 
-const TeamLineUp: React.FC<TeamLineUpProps> = ({ lineUpId, teamId }) => {
+const TeamLineUp: React.FC<TeamLineUpProps> = () => {
   //   const {
   //     teamLineUpQuery: { data: lineUps, isError, isLoading },
   //   } = useLineUp(lineUpId!);

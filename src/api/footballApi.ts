@@ -434,7 +434,7 @@ export async function getTeamLineUp(fixturesId: number) {
 }
 
 // 팀 부상선수를 가져온다.
-export async function getTeamInjuries(teamId?: string, season?: number) {
+export async function getTeamInjuries(teamId?: number, season?: number) {
   const option = {
     ...basicOpt,
     url: `${import.meta.env.VITE_FOOTBALL_API_URL}injuries`,

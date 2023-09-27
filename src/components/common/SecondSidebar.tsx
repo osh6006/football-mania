@@ -12,7 +12,7 @@ interface MenuProps {
 }
 
 const SecondSidebarWrapper = styled.nav`
-  width: 250px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
 `;
@@ -31,8 +31,7 @@ const Menu = styled(NavLink)<MenuProps>`
   align-items: center;
   gap: 1rem;
   border-left: 6px solid transparent;
-  transition: all ${(props) => props.theme.hover.duration} ${(props) => props.theme.hover.type};
-
+  transition: all ${(props) => props.theme.hover.duration};
   ${(props) => {
     const selectedColor = props.$selectColor || "#ffffff";
     const lightSelected = rgba(lighten(0.55, selectedColor), 0.2);
@@ -49,7 +48,7 @@ const Menu = styled(NavLink)<MenuProps>`
         border-left: 6px solid ${lighten(0.2, selectedColor)};
       }
     `;
-  }}
+  }};
 `;
 
 const SecondSidebar: React.FC<SecondSidebarProps> = () => {
@@ -64,15 +63,22 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   return (
     <SecondSidebarWrapper>
       <TitleWrapper>
-        <Title title={"Foot ball 5"} />
-        <SubTitle subtitle={`Foot ball에 대한 모든 것.`} />
+        <Title title={"Football Mania "} />
+        <SubTitle subtitle={`축구에 대한 모든 것.`} />
       </TitleWrapper>
 
       <MenuWrapper>
         {SecondSidebarRoutes?.map((item) => (
           <li key={item.name}>
-            <Menu to={`/${title}/${leagueId}${item.path}`} $selectColor={colorObj?.color}>
-              {subTitle === item.name.toLowerCase() ? <item.activeIcon size={26} /> : <item.icon size={26} />}
+            <Menu
+              to={`/${title}/${leagueId}${item.path}`}
+              $selectColor={colorObj?.color}
+            >
+              {subTitle === item.name.toLowerCase() ? (
+                <item.activeIcon size={26} />
+              ) : (
+                <item.icon size={26} />
+              )}
               {item.name}
             </Menu>
           </li>

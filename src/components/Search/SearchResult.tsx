@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import useFakeSearch from "../../hooks/fake/useFakeSearch";
-import useSearch from "../../hooks/useSearch";
-import useLeagueId from "../../hooks/useLeagueId";
-import Loading from "../common/Loading";
-import Error from "../common/Error";
-import ResultCard from "./ResultCard";
+// import useFakeSearch from "../../hooks/fake/useFakeSearch";
+// import useSearch from "../../hooks/useSearch";
+// import useLeagueId from "../../hooks/useLeagueId";
+// import Loading from "../common/Loading";
+// import Error from "../common/Error";
+// import ResultCard from "./ResultCard";
 
 interface SearchResultProps {
   searchValue: string;
@@ -16,17 +16,17 @@ const SearchResultWrapper = styled.div`
   margin-top: 5vh;
 `;
 
-const NotResult = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${(props) => props.theme.colors.gray};
-  font-size: 2rem;
-  min-height: 500px;
-`;
+// const NotResult = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   color: ${(props) => props.theme.colors.gray};
+//   font-size: 2rem;
+//   min-height: 500px;
+// `;
 
-const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
-  const leagueId = useLeagueId();
+const SearchResult: React.FC<SearchResultProps> = () => {
+  // const leagueId = useLeagueId();
 
   // const {
   //   searchPlayerQuery: {

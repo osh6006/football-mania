@@ -3,10 +3,10 @@ import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
 import useSeason from "../hooks/useSeason";
 import SeasonSelector from "../components/common/SeasonSelector";
-import usePlayerDetail from "../hooks/usePlayerDetail";
+// import usePlayerDetail from "../hooks/usePlayerDetail";
 import Error from "../components/common/Error";
 import Loading from "../components/common/Loading";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import PlayerBasicInfo from "../components/PlayerDetail/PlayerBasicInfo";
 import useFakePlayer from "../hooks/fake/useFakePlayer";
 import StatTable from "../components/PlayerDetail/StatTable";
@@ -23,9 +23,8 @@ const TagTitle = styled.h3`
 `;
 
 export default function PlayerDetail() {
-  const params = useParams();
-  const { seasonRange, selectSeason, setSeasonRange, setSelectSeason } =
-    useSeason();
+  // const params = useParams();
+  const { seasonRange, selectSeason, setSelectSeason } = useSeason();
 
   // const {
   //   playerDetailQuery: { data: detail, isError, isLoading },

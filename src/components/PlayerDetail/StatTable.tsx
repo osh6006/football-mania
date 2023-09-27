@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { Statistics } from "../../type/player";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import StatTabs from "./StatTabs";
 
