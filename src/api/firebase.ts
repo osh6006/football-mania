@@ -3,8 +3,9 @@ import { User } from "@firebase/auth";
 import {
   getAuth,
   signInWithPopup,
-  GoogleAuthProvider,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  GithubAuthProvider,
   signOut,
 } from "firebase/auth";
 import { getDatabase, ref, get, set } from "firebase/database";
@@ -21,12 +22,23 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 const auth = getAuth();
 const database = getDatabase();
 
 export async function googleLogin() {
   return signInWithPopup(auth, googleProvider)
     .then((result) => {
+      return result.user;
+    })
+    .catch(console.error);
+}
+
+export async function githubLogin() {
+  return signInWithPopup(auth, githubProvider)
+    .then((result) => {
+      console.log(result.user);
+
       return result.user;
     })
     .catch(console.error);

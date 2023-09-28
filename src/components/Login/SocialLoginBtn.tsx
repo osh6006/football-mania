@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../features/user/userSlice";
 
-import { googleLogin } from "../../api/firebase";
+import { githubLogin, googleLogin } from "../../api/firebase";
 
 import styled from "styled-components";
 import { AiOutlineGoogle } from "@react-icons/all-files/ai/AiOutlineGoogle";
@@ -41,14 +41,16 @@ const SocialBtn = styled.button<BtnProps>`
 const SocialLoginBtn: React.FC<SocialLoginBtnProps> = ({ type }) => {
   const dispatch = useDispatch();
 
-  const handleLogin = async () => {
-    const user = await googleLogin();
+  const handleLogin = async (type: "google" | "github") => {
+    let user = null;
+    if (type === "google") user = await googleLogin();
+    if (type === "github") user = await githubLogin();
     dispatch(login(user));
   };
 
   if (type === "google") {
     return (
-      <SocialBtn $color="google" onClick={handleLogin}>
+      <SocialBtn $color="google" onClick={() => handleLogin("google")}>
         <AiOutlineGoogle size={25} />
         {`Sign up with Google`}
       </SocialBtn>
@@ -57,7 +59,7 @@ const SocialLoginBtn: React.FC<SocialLoginBtnProps> = ({ type }) => {
 
   if (type === "github") {
     return (
-      <SocialBtn $color="github" onClick={handleLogin}>
+      <SocialBtn $color="github" onClick={() => handleLogin("github")}>
         <AiOutlineGithub size={25} />
         {`Sign up with Github`}
       </SocialBtn>
