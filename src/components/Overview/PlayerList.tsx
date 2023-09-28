@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SectionHeader from "./SectionHeader";
-import useFakePlayer from "../../hooks/fake/useFakePlayer";
+// import useFakePlayer from "../../hooks/fake/useFakePlayer";
 import Loading from "../common/Loading";
 import Error from "../common/Error";
 
@@ -10,7 +10,7 @@ import useLeagueId from "../../hooks/useLeagueId";
 import { useNavigate } from "react-router-dom";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
-// import usePlayer from "../../hooks/usePlayer";
+import usePlayer from "../../hooks/usePlayer";
 
 interface PlayerListProps {
   title: string;
@@ -58,13 +58,13 @@ const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
   const leagueId = useLeagueId();
   const navigate = useNavigate();
 
-  const {
-    topScorerQuery: { data: players, isLoading, isError },
-  } = useFakePlayer();
-
   // const {
-  //   topPlayerQuery: { data: players, isLoading, isError },
-  // } = usePlayer(leagueId, new Date().getFullYear(), type);
+  //   topScorerQuery: { data: players, isLoading, isError },
+  // } = useFakePlayer();
+
+  const {
+    topPlayerQuery: { data: players, isLoading, isError },
+  } = usePlayer(leagueId, new Date().getFullYear(), type);
 
   return (
     <>

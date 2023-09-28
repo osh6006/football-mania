@@ -1,15 +1,16 @@
 import { styled } from "styled-components";
-// import { useParams } from "react-router-dom";
-
-// import useTeam from "../hooks/useTeam";
+import { useParams } from "react-router-dom";
 
 import TeamBasicInfo from "../components/TeamDetail/TeamBasicInfo";
 import TeamStatTable from "../components/TeamDetail/TeamStatTable";
 import TeamLatestMatches from "../components/TeamDetail/TeamLatestMatches";
 import TeamStandings from "../components/TeamDetail/TeamStandings";
-// import useLeagueId from "../hooks/useLeagueId";
+
+import useTeam from "../hooks/useTeam";
+import useLeagueId from "../hooks/useLeagueId";
 import useSeason from "../hooks/useSeason";
-import useFakeTeam from "../hooks/fake/useFakeTeam";
+// import useFakeTeam from "../hooks/fake/useFakeTeam";
+
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
 import SeasonSelector from "../components/common/SeasonSelector";
@@ -27,35 +28,10 @@ const TagTitle = styled.h3`
 `;
 
 export default function TeamDetail() {
-  // const params = useParams();
-  // const leagueId = useLeagueId();
+  const params = useParams();
+  const leagueId = useLeagueId();
 
   const { seasonRange, selectSeason, setSelectSeason } = useSeason();
-
-  const {
-    teamInfoQuery: {
-      data: teamInfo,
-      isError: teamInfoError,
-      isLoading: teamInfoLoading,
-    },
-    teamStatQuery: {
-      data: teamStats,
-      isError: teamStatError,
-      isLoading: teamStatLoading,
-    },
-
-    teamLatestMatchesQuery: {
-      data: teamLatestMatches,
-      isError: teamLatestMatchesError,
-      isLoading: teamLatestMatchesLoading,
-    },
-
-    teamStandingsQuery: {
-      data: teamStandings,
-      isError: teamStandingsError,
-      isLoading: teamStandingsLoading,
-    },
-  } = useFakeTeam();
 
   // const {
   //   teamInfoQuery: {
@@ -69,7 +45,7 @@ export default function TeamDetail() {
   //     isLoading: teamStatLoading,
   //   },
 
-  //   teamLatestMatches: {
+  //   teamLatestMatchesQuery: {
   //     data: teamLatestMatches,
   //     isError: teamLatestMatchesError,
   //     isLoading: teamLatestMatchesLoading,
@@ -80,7 +56,32 @@ export default function TeamDetail() {
   //     isError: teamStandingsError,
   //     isLoading: teamStandingsLoading,
   //   },
-  // } = useTeam(leagueId, selectSeason, params.teamId);
+  // } = useFakeTeam();
+
+  const {
+    teamInfoQuery: {
+      data: teamInfo,
+      isError: teamInfoError,
+      isLoading: teamInfoLoading,
+    },
+    teamStatQuery: {
+      data: teamStats,
+      isError: teamStatError,
+      isLoading: teamStatLoading,
+    },
+
+    teamLatestMatches: {
+      data: teamLatestMatches,
+      isError: teamLatestMatchesError,
+      isLoading: teamLatestMatchesLoading,
+    },
+
+    teamStandingsQuery: {
+      data: teamStandings,
+      isError: teamStandingsError,
+      isLoading: teamStandingsLoading,
+    },
+  } = useTeam(leagueId, selectSeason, params.teamId);
 
   return (
     <TeamDetailWrapper>

@@ -1,16 +1,18 @@
+import { useParams } from "react-router-dom";
+
 import { styled } from "styled-components";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
-import useSeason from "../hooks/useSeason";
 import SeasonSelector from "../components/common/SeasonSelector";
-// import usePlayerDetail from "../hooks/usePlayerDetail";
 import Error from "../components/common/Error";
 import Loading from "../components/common/Loading";
-// import { useParams } from "react-router-dom";
 import PlayerBasicInfo from "../components/PlayerDetail/PlayerBasicInfo";
-import useFakePlayer from "../hooks/fake/useFakePlayer";
 import StatTable from "../components/PlayerDetail/StatTable";
 import CareerTable from "../components/PlayerDetail/CareerTable";
+
+import useSeason from "../hooks/useSeason";
+import usePlayerDetail from "../hooks/usePlayerDetail";
+// import useFakePlayer from "../hooks/fake/useFakePlayer";
 
 const PlayerDetailWrapper = styled.div`
   max-width: 1280px;
@@ -23,21 +25,21 @@ const TagTitle = styled.h3`
 `;
 
 export default function PlayerDetail() {
-  // const params = useParams();
+  const params = useParams();
   const { seasonRange, selectSeason, setSelectSeason } = useSeason();
-
-  // const {
-  //   playerDetailQuery: { data: detail, isError, isLoading },
-  // } = usePlayerDetail(Number(params.playerId), selectSeason);
-
-  // const {
-  //   playerTrophieQuery: { data: trophies },
-  // } = usePlayerDetail(Number(params.playerId), selectSeason);
 
   const {
     playerDetailQuery: { data: detail, isError, isLoading },
-    playerTrophiesQuery: { data: trophies },
-  } = useFakePlayer();
+  } = usePlayerDetail(Number(params.playerId), selectSeason);
+
+  const {
+    playerTrophieQuery: { data: trophies },
+  } = usePlayerDetail(Number(params.playerId), selectSeason);
+
+  // const {
+  //   playerDetailQuery: { data: detail, isError, isLoading },
+  //   playerTrophiesQuery: { data: trophies },
+  // } = useFakePlayer();
 
   return (
     <PlayerDetailWrapper>

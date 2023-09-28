@@ -226,7 +226,7 @@ const TeamStatTabs: React.FC<StatTabsProps> = ({
         {tabState === "tackles" && (
           <>
             <Row>
-              <TeamLineUp lineUpId={lineUpId} teamId={teamId} />
+              <TeamLineUp lineUpId={String(lineUpId)} teamId={teamId} />
             </Row>
           </>
         )}

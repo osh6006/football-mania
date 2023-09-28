@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SectionHeader from "./SectionHeader";
-import useFakeFixtures from "../../hooks/fake/useFakeFixtures";
+// import useFakeFixtures from "../../hooks/fake/useFakeFixtures";
 import useColor from "../../hooks/useColor";
 import { mix } from "polished";
 import SubTitle from "../common/SubTitle";
@@ -8,8 +8,9 @@ import Loading from "../common/Loading";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+
 import useLeagueId from "../../hooks/useLeagueId";
-// import useFixtures from "../../hooks/useFixtures";
+import useFixtures from "../../hooks/useFixtures";
 
 interface MatchProps {
   $color: string;
@@ -76,13 +77,13 @@ const LatestMatches = () => {
   const color = useColor();
   const leagueId = useLeagueId();
 
-  const {
-    fakeLatestMatchesQuery: { data: matches, isLoading, isError },
-  } = useFakeFixtures();
-
   // const {
-  //   bannerLatestMatchesQuery: { data: matches, isLoading, isError },
-  // } = useFixtures(leagueId);
+  //   fakeLatestMatchesQuery: { data: matches, isLoading, isError },
+  // } = useFakeFixtures();
+
+  const {
+    bannerLatestMatchesQuery: { data: matches, isLoading, isError },
+  } = useFixtures(leagueId);
 
   return (
     <LatestMatchesWrapper>

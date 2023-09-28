@@ -13,11 +13,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { Standing } from "../../type/standings";
-import useFakeStandings from "../../hooks/fake/useFakeStandings";
+// import useFakeStandings from "../../hooks/fake/useFakeStandings";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
 import Form from "../Rank/Form";
-// import useTeam from "../../hooks/useTeam";
+import useTeam from "../../hooks/useTeam";
 
 interface TableProps {
   $color: string;
@@ -119,17 +119,17 @@ const Logo = styled(LazyLoadImage)`
 `;
 
 const RankTable = () => {
-  const {
-    fakeStandingsQuery: { data: teams, isLoading, isError },
-  } = useFakeStandings();
+  // const {
+  //   fakeStandingsQuery: { data: teams, isLoading, isError },
+  // } = useFakeStandings();
 
   const leagueId = useLeagueId();
   const color = useColor();
   const navigate = useNavigate();
 
-  // const {
-  //   teamRankQuery: { data: teams, isLoading, isError },
-  // } = useTeam(leagueId, new Date().getFullYear());
+  const {
+    teamRankQuery: { data: teams, isLoading, isError },
+  } = useTeam(leagueId, new Date().getFullYear());
 
   return (
     <RankTableWrapper>

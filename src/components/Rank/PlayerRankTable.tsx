@@ -8,9 +8,9 @@ import Error from "../common/Error";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-import useFakePlayer from "../../hooks/fake/useFakePlayer";
+// import useFakePlayer from "../../hooks/fake/useFakePlayer";
 import useLeagueId from "../../hooks/useLeagueId";
-// import usePlayer from "../../hooks/usePlayer";
+import usePlayer from "../../hooks/usePlayer";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
 import { useNavigate } from "react-router-dom";
@@ -153,7 +153,7 @@ const Logo = styled(LazyLoadImage)`
   width: 30px;
 `;
 
-const PlayerRankTable: React.FC<PlayerRankTableProps> = () => {
+const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
   const color = useColor();
   const leagueId = useLeagueId();
   const navigate = useNavigate();
@@ -163,13 +163,13 @@ const PlayerRankTable: React.FC<PlayerRankTableProps> = () => {
     setPlayerType(type);
   };
 
-  const {
-    topScorerQuery: { data: players, isLoading, isError },
-  } = useFakePlayer();
-
   // const {
-  //   topPlayerQuery: { data: players, isLoading, isError },
-  // } = usePlayer(leagueId, selectSeason, playerType);
+  //   topScorerQuery: { data: players, isLoading, isError },
+  // } = useFakePlayer();
+
+  const {
+    topPlayerQuery: { data: players, isLoading, isError },
+  } = usePlayer(leagueId, selectSeason, playerType);
 
   return (
     <>

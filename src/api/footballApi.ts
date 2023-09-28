@@ -407,7 +407,7 @@ export async function getTeamLatestMatches(teamId?: string, season?: number) {
 }
 
 // 팀 라인업을 가져온다.
-export async function getTeamLineUp(fixturesId: number) {
+export async function getTeamLineUp(fixturesId?: string) {
   const option = {
     ...basicOpt,
     url: `${import.meta.env.VITE_FOOTBALL_API_URL}fixtures`,

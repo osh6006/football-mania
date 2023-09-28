@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import { BsChevronDown } from "@react-icons/all-files/bs/BsChevronDown";
-// import useLive from "../../hooks/useLive";
-import useFakeLive from "../../hooks/fake/useFakeLive";
+
+import useLive from "../../hooks/useLive";
+// import useFakeLive from "../../hooks/fake/useFakeLive";
+
 import LineUp from "./LineUp";
 import HeadToHead from "./HeadToHead";
 import Error from "../common/Error";
@@ -74,15 +76,15 @@ const LiveWrapper = styled.div`
 
 const MatchAccordion: React.FC<MatchAccordionProps> = ({
   title,
-  // fixturesId,
+  fixturesId,
 }) => {
-  // const {
-  //   liveScoreQuery: { data: liveData, isError, isLoading },
-  // } = useLive(fixturesId);
-
   const {
     liveScoreQuery: { data: liveData, isError, isLoading },
-  } = useFakeLive();
+  } = useLive(fixturesId);
+
+  // const {
+  //   liveScoreQuery: { data: liveData, isError, isLoading },
+  // } = useFakeLive();
 
   const [isOpen, setIsOpen] = useState(false);
   const toggleAccordion = () => {

@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import useFakeFixtures from "../../hooks/fake/useFakeFixtures";
+// import useFakeFixtures from "../../hooks/fake/useFakeFixtures";
 import Loading from "../common/Loading";
 import { darken } from "polished";
 import SubTitle from "../common/SubTitle";
 import DetailLink from "../common/DetailLink";
+
 import useLeagueId from "../../hooks/useLeagueId";
-// import useFixtures from "../../hooks/useFixtures";
+import useFixtures from "../../hooks/useFixtures";
 
 interface LiveSwitchProps {
   $isLive: boolean;
@@ -109,13 +110,13 @@ const LinkWrapper = styled.div`
 const Live = () => {
   const leagueId = useLeagueId();
 
-  const {
-    fakeLiveMatchQuery: { data: matches, isLoading, isError },
-  } = useFakeFixtures();
-
   // const {
-  //   bannerLiveMatchQuery: { data: matches, isLoading, isError },
-  // } = useFixtures(leagueId);
+  //   fakeLiveMatchQuery: { data: matches, isLoading, isError },
+  // } = useFakeFixtures();
+
+  const {
+    bannerLiveMatchQuery: { data: matches, isLoading, isError },
+  } = useFixtures(leagueId);
 
   return (
     <LiveWrapper>

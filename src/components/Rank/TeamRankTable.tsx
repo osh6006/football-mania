@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import useFakeStandings from "../../hooks/fake/useFakeStandings";
+// import useFakeStandings from "../../hooks/fake/useFakeStandings";
 import Loading from "../common/Loading";
 import { Standing } from "../../type/standings";
 import useColor from "../../hooks/useColor";
@@ -11,7 +11,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
 
-// import useTeam from "../../hooks/useTeam";
+import useTeam from "../../hooks/useTeam";
 import useLeagueId from "../../hooks/useLeagueId";
 import { useNavigate } from "react-router-dom";
 import Form from "./Form";
@@ -119,18 +119,18 @@ const Logo = styled(LazyLoadImage)`
   width: 25px;
 `;
 
-const TeamRankTable: React.FC<TeamRankTableProps> = () => {
+const TeamRankTable: React.FC<TeamRankTableProps> = ({ selectSeason }) => {
   const color = useColor();
   const leagueId = useLeagueId();
   const navigate = useNavigate();
 
-  const {
-    fakeStandingsQuery: { data: teams, isLoading, isError },
-  } = useFakeStandings();
-
   // const {
-  //   teamRankQuery: { data: teams, isLoading, isError },
-  // } = useTeam(leagueId, selectSeason);
+  //   fakeStandingsQuery: { data: teams, isLoading, isError },
+  // } = useFakeStandings();
+
+  const {
+    teamRankQuery: { data: teams, isLoading, isError },
+  } = useTeam(leagueId, selectSeason);
 
   return (
     <RankTableWrapper>

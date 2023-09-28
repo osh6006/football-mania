@@ -1,10 +1,10 @@
 import styled from "styled-components";
 // import useFakeSearch from "../../hooks/fake/useFakeSearch";
-// import useSearch from "../../hooks/useSearch";
-// import useLeagueId from "../../hooks/useLeagueId";
-// import Loading from "../common/Loading";
-// import Error from "../common/Error";
-// import ResultCard from "./ResultCard";
+import useSearch from "../../hooks/useSearch";
+import useLeagueId from "../../hooks/useLeagueId";
+import Loading from "../common/Loading";
+import Error from "../common/Error";
+import ResultCard from "./ResultCard";
 
 interface SearchResultProps {
   searchValue: string;
@@ -16,38 +16,38 @@ const SearchResultWrapper = styled.div`
   margin-top: 5vh;
 `;
 
-// const NotResult = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   color: ${(props) => props.theme.colors.gray};
-//   font-size: 2rem;
-//   min-height: 500px;
-// `;
+const NotResult = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => props.theme.colors.gray};
+  font-size: 2rem;
+  min-height: 500px;
+`;
 
-const SearchResult: React.FC<SearchResultProps> = () => {
-  // const leagueId = useLeagueId();
+const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
+  const leagueId = useLeagueId();
 
-  // const {
-  //   searchPlayerQuery: {
-  //     data: players,
-  //     isError: isPlayerError,
-  //     isLoading: isPlayerLoading,
-  //   },
-  //   searchCoachQuery: {
-  //     data: coachs,
-  //     isError: isCoachError,
-  //     isLoading: isCoachLoading,
-  //   },
-  //   searchTeamQuery: {
-  //     data: teams,
-  //     isError: isTeamError,
-  //     isLoading: isTeamLoading,
-  //   },
-  // } = useSearch(leagueId, searchValue);
+  const {
+    searchPlayerQuery: {
+      data: players,
+      isError: isPlayerError,
+      isLoading: isPlayerLoading,
+    },
+    searchCoachQuery: {
+      data: coachs,
+      isError: isCoachError,
+      isLoading: isCoachLoading,
+    },
+    searchTeamQuery: {
+      data: teams,
+      isError: isTeamError,
+      isLoading: isTeamLoading,
+    },
+  } = useSearch(leagueId, searchValue);
 
-  // const isLoading = isPlayerLoading || isCoachLoading || isTeamLoading;
-  // const isError = isTeamError || isCoachError || isPlayerError;
+  const isLoading = isPlayerLoading || isCoachLoading || isTeamLoading;
+  const isError = isTeamError || isCoachError || isPlayerError;
 
   // const {
   //   searchQuery: { data: players, isError, isLoading },
@@ -55,15 +55,21 @@ const SearchResult: React.FC<SearchResultProps> = () => {
 
   return (
     <SearchResultWrapper>
-      {/* {isLoading && <Loading />}
+      {isLoading && <Loading />}
       {isError && <Error message="데이터를 불러오는 중 오류가 발생했습니다." />}
       {players &&
         players?.length > 0 &&
         players.map((playerInfo) => {
-          return <ResultCard type="player" key={playerInfo.player.id} playerInfo={playerInfo} />;
-        })} */}
+          return (
+            <ResultCard
+              type="player"
+              key={playerInfo.player.id}
+              playerInfo={playerInfo}
+            />
+          );
+        })}
 
-      {/* {isPlayerLoading || isCoachLoading || isTeamLoading ? (
+      {isPlayerLoading || isCoachLoading || isTeamLoading ? (
         <Loading />
       ) : (
         <>
@@ -103,7 +109,7 @@ const SearchResult: React.FC<SearchResultProps> = () => {
         isCoachError ||
         (isTeamError && (
           <Error message="데이터를 불러오는 중 오류가 발생하였습니다." />
-        ))} */}
+        ))}
     </SearchResultWrapper>
   );
 };

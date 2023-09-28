@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import useFakeFixtures from "../hooks/fake/useFakeFixtures";
+// import useFakeFixtures from "../hooks/fake/useFakeFixtures";
 import MatchAccordion from "../components/Live/MatchAccordion";
 import Error from "../components/common/Error";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
 import Loading from "../components/common/Loading";
-// import useLeagueId from "../hooks/useLeagueId";
-// import useFixtures from "../hooks/useFixtures";
+
+import useLeagueId from "../hooks/useLeagueId";
+import useFixtures from "../hooks/useFixtures";
 
 const LiveWrapper = styled.section`
   padding: 1rem 1rem;
@@ -24,15 +25,15 @@ const MatchesWrapper = styled.div`
 `;
 
 export default function Live() {
-  // const leagueId = useLeagueId();
-
-  // const {
-  //   liveMatchesQuery: { data: matches, isError, isLoading },
-  // } = useFixtures(leagueId);
+  const leagueId = useLeagueId();
 
   const {
-    fakeLiveMatchQuery: { data: matches, isError, isLoading },
-  } = useFakeFixtures();
+    liveMatchesQuery: { data: matches, isError, isLoading },
+  } = useFixtures(leagueId);
+
+  // const {
+  //   fakeLiveMatchQuery: { data: matches, isError, isLoading },
+  // } = useFakeFixtures();
 
   return (
     <LiveWrapper>

@@ -1,11 +1,11 @@
 import React from "react";
-// import useLineUp from "../../hooks/team/useLineUp";
-// import Loading from "../common/Loading";
-// import Error from "../common/Error";
+import useLineUp from "../../hooks/team/useLineUp";
+import Loading from "../common/Loading";
+import Error from "../common/Error";
 import { styled } from "styled-components";
 
 interface TeamLineUpProps {
-  lineUpId?: number | string;
+  lineUpId?: string;
   teamId?: number;
 }
 
@@ -15,59 +15,59 @@ const TeamLineUpWrapper = styled.div`
   flex-direction: column;
 `;
 
-// const Title = styled.h3`
-//   font-size: 1.2rem;
-// `;
+const Title = styled.h3`
+  font-size: 1.2rem;
+`;
 
-// const PlayersWrapper = styled.div`
-//   display: flex;
-//   gap: 1rem;
-// `;
+const PlayersWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
 
-// const StartMember = styled.div`
-//   flex: 1;
-// `;
-// const SubMember = styled.div`
-//   flex: 1;
-// `;
+const StartMember = styled.div`
+  flex: 1;
+`;
+const SubMember = styled.div`
+  flex: 1;
+`;
 
-// const NameWrapper = styled.div`
-//   display: flex;
-//   align-items: center;
-//   gap: 1rem;
-//   margin: 0.5rem 0;
-// `;
-// const Name = styled.p``;
+const NameWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+`;
+const Name = styled.p``;
 
-// const Number = styled.p`
-//   color: ${(props) => props.theme.colors.gray};
-//   font-weight: bold;
-// `;
+const Number = styled.p`
+  color: ${(props) => props.theme.colors.gray};
+  font-weight: bold;
+`;
 
-// const Profile = styled.img`
-//   width: 35px;
-//   border-radius: 50%;
-// `;
+const Profile = styled.img`
+  width: 35px;
+  border-radius: 50%;
+`;
 
-const TeamLineUp: React.FC<TeamLineUpProps> = () => {
-  //   const {
-  //     teamLineUpQuery: { data: lineUps, isError, isLoading },
-  //   } = useLineUp(lineUpId!);
+const TeamLineUp: React.FC<TeamLineUpProps> = ({ lineUpId, teamId }) => {
+  const {
+    teamLineUpQuery: { data: lineUps, isError, isLoading },
+  } = useLineUp(lineUpId);
 
-  //   if (isError) {
-  //     return <Error message="데이터를 가져오는 중 오류가 발생 하였습니다." />;
-  //   }
+  if (isError) {
+    return <Error message="데이터를 가져오는 중 오류가 발생 하였습니다." />;
+  }
 
-  //   if (isLoading) {
-  //     return <Loading />;
-  //   }
+  if (isLoading) {
+    return <Loading />;
+  }
 
-  //   const lineUp = lineUps?.lineups.filter((el) => el.team.id === teamId)[0];
+  const lineUp = lineUps?.lineups.filter((el) => el.team.id === teamId)[0];
 
   return (
     <TeamLineUpWrapper>
       라인업
-      {/* <Title>감독</Title>
+      <Title>감독</Title>
       <br />
       <NameWrapper>
         <Profile src={lineUp?.coach.photo} alt="감독 사진" />
@@ -97,7 +97,7 @@ const TeamLineUp: React.FC<TeamLineUpProps> = () => {
             </NameWrapper>
           ))}
         </SubMember>
-      </PlayersWrapper> */}
+      </PlayersWrapper>
     </TeamLineUpWrapper>
   );
 };

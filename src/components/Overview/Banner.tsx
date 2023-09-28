@@ -1,18 +1,20 @@
-import styled from "styled-components";
-import useColor from "../../hooks/useColor";
-import { darken, rgba } from "polished";
-import useFakeFixtures from "../../hooks/fake/useFakeFixtures";
-import Loading from "../common/Loading";
-import Title from "../common/Title";
-import SubTitle from "../common/SubTitle";
-import { timeStampToDate } from "../../util/date";
-import Button from "../common/Button";
 import { useNavigate } from "react-router-dom";
-import useLeagueId from "../../hooks/useLeagueId";
-// import useFixtures from "../../hooks/useFixtures";
 
-// import useLeagueId from "../../hooks/useLeagueId";
-// import useFixtures from "../../hooks/useFixtures";
+import styled from "styled-components";
+import { darken, rgba } from "polished";
+
+import Loading from "../common/Loading";
+import SubTitle from "../common/SubTitle";
+import Title from "../common/Title";
+import Button from "../common/Button";
+
+import { timeStampToDate } from "../../util/date";
+
+import useColor from "../../hooks/useColor";
+import useLeagueId from "../../hooks/useLeagueId";
+import useFixtures from "../../hooks/useFixtures";
+
+// import useFakeFixtures from "../../hooks/fake/useFakeFixtures";
 
 interface BannerColor {
   $color: string;
@@ -89,13 +91,13 @@ const Banner = () => {
   const leagueId = useLeagueId();
   const color = useColor() || "#FFF";
 
-  // const {
-  //   bannerNextMatchesQuery: { data: matches, isLoading, error },
-  // } = useFixtures(leagueId);
-
   const {
-    fakeNextMatchesQuery: { data: matches, isLoading, error },
-  } = useFakeFixtures();
+    bannerNextMatchesQuery: { data: matches, isLoading, error },
+  } = useFixtures(leagueId);
+
+  // const {
+  //   fakeNextMatchesQuery: { data: matches, isLoading, error },
+  // } = useFakeFixtures();
 
   if (error) {
     return (

@@ -3,17 +3,17 @@ import { Scheduler } from "@aldabil/react-scheduler";
 
 import { Button } from "@mui/material";
 
-// import { ProcessedEvent, RemoteQuery } from "@aldabil/react-scheduler/types";
+import { ProcessedEvent, RemoteQuery } from "@aldabil/react-scheduler/types";
 
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
-// import { getLeagueSchedule } from "../api/footballApi";
-// import useLeagueId from "../hooks/useLeagueId";
-// import { formatDateToISO } from "../util/date";
-// import { Match } from "../type/fixtures";
-// import { ScheduleEvent } from "../type/schedule";
-// import { formatSchedule } from "../util/schedule";
-// import { useCallback } from "react";
+import { getLeagueSchedule } from "../api/footballApi";
+import useLeagueId from "../hooks/useLeagueId";
+import { formatDateToISO } from "../util/date";
+import { Match } from "../type/fixtures";
+import { ScheduleEvent } from "../type/schedule";
+import { formatSchedule } from "../util/schedule";
+import { useCallback } from "react";
 
 const ScheduleWrapper = styled.section`
   padding: 1rem;
@@ -26,33 +26,33 @@ const SchedulerTable = styled.div`
 `;
 
 export default function Schedule() {
-  // const leagueId = useLeagueId();
+  const leagueId = useLeagueId();
 
-  // const fetchRemote = useCallback(
-  //   async (query: RemoteQuery): Promise<ProcessedEvent[]> => {
-  //     const season = new Date(query.start).getFullYear();
-  //     const start = formatDateToISO(query.start);
-  //     const end = formatDateToISO(query.end);
+  const fetchRemote = useCallback(
+    async (query: RemoteQuery): Promise<ProcessedEvent[]> => {
+      const season = new Date(query.start).getFullYear();
+      const start = formatDateToISO(query.start);
+      const end = formatDateToISO(query.end);
 
-  //     const schedules: Match[] = await getLeagueSchedule(
-  //       leagueId,
-  //       season,
-  //       start,
-  //       end
-  //     );
+      const schedules: Match[] = await getLeagueSchedule(
+        leagueId,
+        season,
+        start,
+        end
+      );
 
-  //     return new Promise((res) => {
-  //       const formatSchedules: ScheduleEvent[] = schedules.map(
-  //         (schedule, i) => {
-  //           return formatSchedule(schedule, i);
-  //         }
-  //       );
-  //       res(formatSchedules);
-  //     });
-  //   },
+      return new Promise((res) => {
+        const formatSchedules: ScheduleEvent[] = schedules.map(
+          (schedule, i) => {
+            return formatSchedule(schedule, i);
+          }
+        );
+        res(formatSchedules);
+      });
+    },
 
-  //   [leagueId]
-  // );
+    [leagueId]
+  );
 
   return (
     <ScheduleWrapper>
@@ -61,7 +61,7 @@ export default function Schedule() {
       <br />
       <SchedulerTable>
         <Scheduler
-          // getRemoteEvents={fetchRemote}
+          getRemoteEvents={fetchRemote}
           timeZone="Asia/Seoul"
           view="month"
           editable={false}
