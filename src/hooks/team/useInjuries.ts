@@ -14,12 +14,11 @@ export default function useInjuries(teamId?: number, season?: number) {
         const date = moment(el.fixture.date).format("YY-MM-DD");
         const today = moment().format("YY-MM-DD");
 
-        console.log(date);
-        console.log(today);
+        return date === today;
       });
       console.log(injuries);
 
-      return data;
+      return injuries;
     },
   });
   return { teamInjuriesQuery };
