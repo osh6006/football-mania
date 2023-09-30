@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { Score, Team } from "../../type/fixtures";
+import { Goals, Team } from "../../type/fixtures";
 
 interface HeadToHeadProps {
   team?: Team;
-  score?: Score;
+  score?: Goals;
 }
 
 const HeadToHeadWrapper = styled.div`
@@ -44,7 +44,7 @@ function HeadToHead({ team, score }: HeadToHeadProps) {
         <TeamName>{team?.home.name}</TeamName>
       </Home>
       <VSScore>
-        <div>{score?.fulltime.home}</div>:<div>{score?.fulltime.away}</div>
+        <div>{score?.home}</div>:<div>{score?.away}</div>
       </VSScore>
       <Away>
         <Logo src={team?.away.logo} alt={"AwayLogo"} />

@@ -74,10 +74,7 @@ const LiveWrapper = styled.div`
   border-radius: ${(props) => props.theme.border.radius};
 `;
 
-const MatchAccordion: React.FC<MatchAccordionProps> = ({
-  title,
-  fixturesId,
-}) => {
+const MatchAccordion: React.FC<MatchAccordionProps> = ({ title, fixturesId }) => {
   const {
     liveScoreQuery: { data: liveData, isError, isLoading },
   } = useLive(fixturesId);
@@ -105,10 +102,7 @@ const MatchAccordion: React.FC<MatchAccordionProps> = ({
             </AccordionIcon>
           </AccordionHeader>
           <AccordionContent $isOpen={isOpen}>
-            <HeadToHead
-              team={liveData && liveData[0].teams}
-              score={liveData && liveData[0].score}
-            />
+            <HeadToHead team={liveData && liveData[0].teams} score={liveData && liveData[0].goals} />
             <Event events={liveData && liveData[0].events} />
             <LineUp lineUps={liveData && liveData[0]?.lineups} />
           </AccordionContent>
