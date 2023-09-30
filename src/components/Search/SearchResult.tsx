@@ -11,39 +11,34 @@ interface SearchResultProps {
 }
 
 const SearchResultWrapper = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 5vh;
 `;
 
-const NotResult = styled.div`
+const NotSearchValue = styled.div`
+  color: ${(props) => props.theme.colors.gray};
+  font-size: 1.5rem;
+`;
+
+const LoadingWrapper = styled.div`
+  width: 100%;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => props.theme.colors.gray};
-  font-size: 2rem;
-  min-height: 500px;
+  top: 100%;
+  left: 50%;
 `;
 
 const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
   const leagueId = useLeagueId();
 
   const {
-    searchPlayerQuery: {
-      data: players,
-      isError: isPlayerError,
-      isLoading: isPlayerLoading,
-    },
-    searchCoachQuery: {
-      data: coachs,
-      isError: isCoachError,
-      isLoading: isCoachLoading,
-    },
-    searchTeamQuery: {
-      data: teams,
-      isError: isTeamError,
-      isLoading: isTeamLoading,
-    },
+    searchPlayerQuery: { data: players, isError: isPlayerError, isLoading: isPlayerLoading },
+    searchCoachQuery: { data: coachs, isError: isCoachError, isLoading: isCoachLoading },
+    searchTeamQuery: { data: teams, isError: isTeamError, isLoading: isTeamLoading },
   } = useSearch(leagueId, searchValue);
 
   const isLoading = isPlayerLoading || isCoachLoading || isTeamLoading;
@@ -53,63 +48,54 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
   //   searchQuery: { data: players, isError, isLoading },
   // } = useFakeSearch();
 
+  if (!searchValue) {
+    return (
+      <LoadingWrapper>
+        <NotSearchValue>검색어를 입력 후 Enter or 버튼 클릭</NotSearchValue>
+      </LoadingWrapper>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <LoadingWrapper>
+        <Loading />
+      </LoadingWrapper>
+    );
+  }
+
+  if (isError) {
+    return (
+      <LoadingWrapper>
+        <Error message="데이터를 불러오는 중 오류가 발생했습니다." />
+      </LoadingWrapper>
+    );
+  }
+  console.log(players);
+  console.log(coachs);
+  console.log(teams);
+
+  if (players?.length === 0 && coachs?.length === 0 && teams?.length === 0) {
+    return (
+      <LoadingWrapper>
+        <NotSearchValue>검색된 결과가 없어요 :) 다시 검색해주세요!</NotSearchValue>
+      </LoadingWrapper>
+    );
+  }
+
   return (
     <SearchResultWrapper>
-      {isLoading && <Loading />}
-      {isError && <Error message="데이터를 불러오는 중 오류가 발생했습니다." />}
-      {players &&
-        players?.length > 0 &&
-        players.map((playerInfo) => {
-          return (
-            <ResultCard
-              type="player"
-              key={playerInfo.player.id}
-              playerInfo={playerInfo}
-            />
-          );
-        })}
-
-      {isPlayerLoading || isCoachLoading || isTeamLoading ? (
-        <Loading />
-      ) : (
-        <>
-          {players?.length === 0 &&
-            coachs?.length === 0 &&
-            teams?.length === 0 && (
-              <NotResult>검색된 결과가 없어요 :) 다시 검색해주세요!</NotResult>
-            )}
-          {players &&
-            players?.length > 0 &&
-            players.map((playerInfo) => {
-              return (
-                <ResultCard
-                  type="player"
-                  key={playerInfo.player.id}
-                  playerInfo={playerInfo}
-                />
-              );
-            })}
-          {coachs &&
-            coachs?.length > 0 &&
-            coachs.map((coachInfo) => (
-              <ResultCard
-                type="coach"
-                coachInfo={coachInfo}
-                key={coachInfo.id}
-              />
-            ))}
-          {teams &&
-            teams?.length > 0 &&
-            teams.map((teamInfo) => (
-              <ResultCard type="team" teamInfo={teamInfo} key={teamInfo.id} />
-            ))}
-        </>
-      )}
-      {isPlayerError ||
-        isCoachError ||
-        (isTeamError && (
-          <Error message="데이터를 불러오는 중 오류가 발생하였습니다." />
-        ))}
+      <>
+        {players &&
+          players?.length > 0 &&
+          players.map((playerInfo) => <ResultCard type="player" key={playerInfo.player.id} playerInfo={playerInfo} />)}
+        {coachs &&
+          coachs?.length > 0 &&
+          coachs.map((coachInfo) => <ResultCard type="coach" coachInfo={coachInfo} key={coachInfo.id} />)}
+        {teams &&
+          teams?.length > 0 &&
+          teams.map((teamInfo) => <ResultCard type="team" teamInfo={teamInfo} key={teamInfo.id} />)}
+      </>
     </SearchResultWrapper>
   );
 };

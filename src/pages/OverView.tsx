@@ -76,7 +76,7 @@ export default function OverView() {
       <ProfileWrapper>
         <Profile />
       </ProfileWrapper>
-      <LeftSideWrapper>
+      {/* <LeftSideWrapper>
         <Title title={`어서오세요 ${user?.displayName}님 !`} />
         <SubTitle subtitle="Football Mania에 오신 것을 환영합니다." />
         <Banner />
@@ -90,7 +90,7 @@ export default function OverView() {
       <RightSideWrapper>
         <PlayerList title="최다 득점 선수" type="topscorers" />
         <PlayerList title="최다 도움 선수" type="topassists" />
-      </RightSideWrapper>
+      </RightSideWrapper> */}
     </OverViewWrapper>
   );
 }

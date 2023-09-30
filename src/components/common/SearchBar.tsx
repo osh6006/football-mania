@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 
 interface SearchBarProps {
-  searchValue: string;
+  searchValue?: string;
   onSearchValueChange: (newValue: string) => void;
 }
 
-const SearchForm = styled.div`
+const SearchForm = styled.form`
   width: 40%;
   position: absolute;
   display: flex;
@@ -74,7 +74,7 @@ const SearchBtn = styled.button`
   border-top-right-radius: 92px;
   border-bottom-right-radius: 92px;
   background-color: transparent;
-  transition: background 0.1s ease-in;
+  transition: background 0.4s linear;
 
   &:hover {
     font-weight: bold;
@@ -82,8 +82,9 @@ const SearchBtn = styled.button`
   }
 `;
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearchValueChange, searchValue }) => {
-  const [isInputFocused, setIsInputFocused] = useState(false);
+const SearchBar: React.FC<SearchBarProps> = ({ onSearchValueChange }) => {
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
+  const [tempSearchValue, setTempSearchValue] = useState<string>("");
 
   const handleInputFocus = () => {
     setIsInputFocused(true);
@@ -93,19 +94,25 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchValueChange, searchValue 
     setIsInputFocused(false);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTempInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    onSearchValueChange(newValue);
+    setTempSearchValue(newValue);
+  };
+
+  const handleSearch = (event: FormEvent) => {
+    event.preventDefault();
+    if (!tempSearchValue) return;
+    onSearchValueChange(tempSearchValue);
   };
 
   return (
-    <SearchForm className={isInputFocused ? "focused" : ""}>
+    <SearchForm onSubmit={handleSearch} className={isInputFocused ? "focused" : ""}>
       <SearchInput
         placeholder="팀이나 선수를 검색해 보세요 (영어로)"
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        value={searchValue}
-        onChange={handleInputChange}
+        value={tempSearchValue}
+        onChange={handleTempInputChange}
       />
       <SearchSpan />
       <SearchBtn type="submit">

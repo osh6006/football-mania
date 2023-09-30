@@ -1,14 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-  getCoachTeam,
-  getSearchCoach,
-  getSearchPlayer,
-} from "../api/footballApi";
+import { getSearchCoach, getSearchPlayer, getSearchTeam } from "../api/footballApi";
 
 import { Players } from "../type/player";
 import { Coach, SearchTeam } from "../type/search";
 
 export default function useSearch(leagueId: number, searchValue: string) {
+  console.log(searchValue, leagueId);
+
   const searchPlayerQuery = useQuery({
     queryKey: ["searchPlayer", leagueId, searchValue],
     queryFn: () => getSearchPlayer(leagueId, searchValue),
@@ -31,11 +29,11 @@ export default function useSearch(leagueId: number, searchValue: string) {
 
   const searchTeamQuery = useQuery({
     queryKey: ["topPlayer", leagueId, searchValue],
-    queryFn: () => getCoachTeam(leagueId, searchValue),
-    enabled: !!leagueId && !!searchValue,
+    queryFn: () => getSearchTeam(searchValue),
+    enabled: !!searchValue,
     staleTime: Infinity,
     select(data): SearchTeam[] {
-      return data.response;
+      return data;
     },
   });
 

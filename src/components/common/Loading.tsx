@@ -18,14 +18,14 @@ const rotation = keyframes`
 `;
 
 const Spinner = styled.div<SpinnerProps>`
-  height: 30px;
-  width: 30px;
-  border: 4px solid ${(props) => lighten(0.5, props.$color)};
+  height: 35px;
+  width: 35px;
+  border: 2px solid ${(props) => lighten(0.5, props.$color)};
   border-radius: 50%;
   border-top: none;
   border-right: none;
   margin: 16px auto;
-  animation: ${rotation} 1s linear infinite;
+  animation: ${rotation} 1.2s linear infinite;
 `;
 
 const LoadingWrapper = styled.div`

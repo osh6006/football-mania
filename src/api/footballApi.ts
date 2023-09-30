@@ -9,11 +9,7 @@ const basicOpt = {
 };
 
 // 최근 경기를 가져온다.
-export async function getLatestMatches(
-  leagueId: number,
-  season: number,
-  matches: number
-) {
+export async function getLatestMatches(leagueId: number, season: number, matches: number) {
   if (leagueId && season && matches) {
     const option = {
       ...basicOpt,
@@ -38,11 +34,7 @@ export async function getLatestMatches(
 }
 
 // 다음 경기를 가져온다.
-export async function getNextMatches(
-  leagueId: number,
-  season: number,
-  matches: number
-) {
+export async function getNextMatches(leagueId: number, season: number, matches: number) {
   if (leagueId && season && matches) {
     const option = {
       ...basicOpt,
@@ -116,11 +108,7 @@ export async function getLeagueRanking(leagueId?: number, season?: number) {
 }
 
 // 각 분야별 탑 플레이어들을 가져온다.
-export async function getTopPlayer(
-  leagueId: number,
-  season: number,
-  type: string
-) {
+export async function getTopPlayer(leagueId: number, season: number, type: string) {
   if (leagueId && season && type) {
     const option = {
       ...basicOpt,
@@ -144,12 +132,7 @@ export async function getTopPlayer(
 }
 
 // 리그 스케쥴을 가져온다.
-export async function getLeagueSchedule(
-  leagueId: number,
-  season: number,
-  start: string,
-  end: string
-) {
+export async function getLeagueSchedule(leagueId: number, season: number, start: string, end: string) {
   if (season && leagueId && start && end) {
     const option = {
       ...basicOpt,
@@ -211,10 +194,12 @@ export async function getSearchPlayer(leagueId: number, name: string) {
     };
     try {
       const response = await axios.request(option);
+      console.log(response);
       return response.data.response;
     } catch (error) {
       console.error(error);
-      throw new Error("ERROR GET DATA IN GET_SEARCH_PLAYER");
+      return [];
+      // throw new Error("ERROR GET DATA IN GET_SEARCH_PLAYER");
     }
   } else {
     throw new Error("NOT PARAMETER IN GET_SEARCH_PLAYER");
@@ -234,10 +219,12 @@ export async function getSearchCoach(leagueId: number, name: string) {
     };
     try {
       const response = await axios.request(option);
+      console.log(response);
       return response.data.response;
     } catch (error) {
       console.error(error);
-      throw new Error("ERROR GET DATA IN GET_SEARCH_COACH");
+      return [];
+      // throw new Error("ERROR GET DATA IN GET_SEARCH_COACH");
     }
   } else {
     throw new Error("NOT PARAMETER IN GET_SEARCH_COACH");
@@ -245,22 +232,23 @@ export async function getSearchCoach(leagueId: number, name: string) {
 }
 
 // 팀을 검색한 결과의 데이터를 가져온다.
-export async function getCoachTeam(leagueId: number, name: string) {
-  if (leagueId && name) {
+export async function getSearchTeam(name: string) {
+  if (name) {
     const option = {
       ...basicOpt,
       url: `${import.meta.env.VITE_FOOTBALL_API_URL}teams`,
       params: {
-        league: leagueId,
         search: name,
       },
     };
     try {
       const response = await axios.request(option);
+      console.log(response);
       return response.data.response;
     } catch (error) {
       console.error(error);
-      throw new Error("ERROR GET DATA IN GET_SEARCH_TEAM");
+      return [];
+      // throw new Error("ERROR GET DATA IN GET_SEARCH_TEAM");
     }
   } else {
     throw new Error("NOT PARAMETER IN GET_SEARCH_TEAM");
@@ -354,11 +342,7 @@ export async function getTeamInfo(teamId?: string) {
 }
 
 // 팀 스탯을 가져온다.
-export async function getTeamStat(
-  leagueId?: number,
-  teamId?: string,
-  season?: number
-) {
+export async function getTeamStat(leagueId?: number, teamId?: string, season?: number) {
   const option = {
     ...basicOpt,
     url: `${import.meta.env.VITE_FOOTBALL_API_URL}teams/statistics`,
