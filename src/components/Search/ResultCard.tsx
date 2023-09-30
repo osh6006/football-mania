@@ -90,6 +90,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
   const leagueId = useLeagueId();
 
   const handleClick = (id?: number) => {
+    console.log(id, type);
     if (id && type === "player") {
       navigate(`/league/${leagueId}/player/${id}`);
     }
