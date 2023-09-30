@@ -98,25 +98,13 @@ const LatestMatches = () => {
                 <SubTitle subtitle={matches[0].league.round || ""} />
                 <ScoreWrapper>
                   <LogoWrapper>
-                    <Logo
-                      effect="blur"
-                      src={matches[0].teams.home.logo || "Not-Name"}
-                      alt="logo"
-                    />
-                    <TeamName>
-                      {matches[0].teams.home.name || "Not-Name"}
-                    </TeamName>
+                    <Logo effect="blur" src={matches[0].teams.home.logo || "Not-Name"} alt="logo" />
+                    <TeamName>{matches[0].teams.home.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
                   <Score>{`${matches[0].goals.home} : ${matches[0].goals.away}`}</Score>
                   <LogoWrapper>
-                    <Logo
-                      effect="blur"
-                      src={matches[0].teams.away.logo || "Not-Name"}
-                      alt="logo"
-                    />
-                    <TeamName>
-                      {matches[0].teams.away.name || "Not-Name"}
-                    </TeamName>
+                    <Logo effect="blur" src={matches[0].teams.away.logo || "Not-Name"} alt="logo" />
+                    <TeamName>{matches[0].teams.away.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
                 </ScoreWrapper>
               </Match>
@@ -124,25 +112,13 @@ const LatestMatches = () => {
                 <SubTitle subtitle={matches[1]?.league.round || ""} />
                 <ScoreWrapper>
                   <LogoWrapper>
-                    <Logo
-                      effect="blur"
-                      src={matches[1]?.teams.home.logo || "Not-Name"}
-                      alt="logo"
-                    />
-                    <TeamName>
-                      {matches[1]?.teams.home.name || "Not-Name"}
-                    </TeamName>
+                    <Logo effect="blur" src={matches[1]?.teams.home.logo || "Not-Name"} alt="logo" />
+                    <TeamName>{matches[1]?.teams.home.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
-                  <Score>{`${matches[1]?.goals.home} : ${matches[1]?.goals.away}`}</Score>
+                  <Score>{`${matches[1]?.goals.home || 0} : ${matches[1]?.goals.away || 0}`}</Score>
                   <LogoWrapper>
-                    <Logo
-                      effect="blur"
-                      src={matches[1]?.teams.away.logo || "Not-Name"}
-                      alt="logo"
-                    />
-                    <TeamName>
-                      {matches[1]?.teams.away.name || "Not-Name"}
-                    </TeamName>
+                    <Logo effect="blur" src={matches[1]?.teams.away.logo || "Not-Name"} alt="logo" />
+                    <TeamName>{matches[1]?.teams.away.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
                 </ScoreWrapper>
               </Match>
