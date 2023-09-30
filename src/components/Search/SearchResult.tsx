@@ -88,9 +88,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
       </LoadingWrapper>
     );
   }
-  console.log(players);
-  console.log(coachs);
-  console.log(teams);
 
   if (players?.length === 0 && coachs?.length === 0 && teams?.length === 0) {
     return (
