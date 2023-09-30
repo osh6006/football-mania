@@ -164,12 +164,12 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
           </Header>
           <Stat>
             <StatItem>
-              <Height>{teamInfo.venue.name}</Height>
               <p>구장</p>
+              <Height>{teamInfo.venue.name}</Height>
             </StatItem>
             <StatItem>
-              <Height>{teamInfo.venue.city}</Height>
               <p>도시</p>
+              <Height>{teamInfo.venue.city}</Height>
             </StatItem>
           </Stat>
         </>
