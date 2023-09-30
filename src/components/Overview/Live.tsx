@@ -7,6 +7,7 @@ import DetailLink from "../common/DetailLink";
 
 import useLeagueId from "../../hooks/useLeagueId";
 import useFixtures from "../../hooks/useFixtures";
+import Error from "../common/Error";
 
 interface LiveSwitchProps {
   $isLive: boolean;
@@ -51,8 +52,7 @@ const LiveSwitch = styled.div<LiveSwitchProps>`
   text-transform: uppercase;
   border-radius: 8px;
 
-  background-color: ${(props) =>
-    (props.$isLive && darken(0.3, "#9acd32")) || darken(0.3, "#cd3232")};
+  background-color: ${(props) => (props.$isLive && darken(0.3, "#9acd32")) || darken(0.3, "#cd3232")};
 
   &::after {
     content: "";
@@ -118,15 +118,23 @@ const Live = () => {
     bannerLiveMatchQuery: { data: matches, isLoading, isError },
   } = useFixtures(leagueId);
 
+  if (isLoading) {
+    <LiveWrapper>
+      <Loading />
+    </LiveWrapper>;
+  }
+
+  if (isError) {
+    <LiveWrapper>
+      <Error message="데이터를 가져오는 중 오류가 발생했습니다." />
+    </LiveWrapper>;
+  }
+
   return (
     <LiveWrapper>
-      {isError && <>Error</>}
-      {isLoading && <Loading />}
       <TitleWrapper>
         <SectionTitle>라이브</SectionTitle>
-        <LiveSwitch $isLive={(matches && matches.length >= 1 && true) || false}>
-          live
-        </LiveSwitch>
+        <LiveSwitch $isLive={(matches && matches.length >= 1 && true) || false}>live</LiveSwitch>
       </TitleWrapper>
       {isLoading ||
         (matches && matches.length > 0 && (

@@ -37,9 +37,7 @@ export default function Live() {
 
   return (
     <LiveWrapper>
-      {isError && (
-        <Error message="데이터를 불러오는 중 오류가 발생하였습니다." />
-      )}
+      {isError && <Error message="데이터를 불러오는 중 오류가 발생하였습니다." />}
       <Title title="라이브" />
       <SubTitle subtitle="현재 리그의 진행중인 경기를 확인해 보세요." />
       {isLoading && <Loading />}
@@ -51,7 +49,7 @@ export default function Live() {
               key={match.fixture.id}
               fixturesId={match.fixture.id}
               title={
-                `${match.teams.home.name} VS ${match.teams.away.name}` ||
+                `${match.teams.home.name} ${matches[0].goals.home} VS ${matches[0].goals.away} ${match.teams.away.name}` ||
                 "서버에 오류가 있습니다 관리자에게 문의하세요"
               }
             ></MatchAccordion>
