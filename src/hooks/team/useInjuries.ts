@@ -9,6 +9,17 @@ export default function useInjuries(teamId?: number, season?: number) {
     enabled: !!teamId && !!season,
     staleTime: Infinity,
     select(data): Injury[] {
+      const injuries = data.filter((el: Injury) => {
+        const date = new Date(el.fixture.date);
+        const today = new Date();
+
+        console.log(date);
+        console.log(today);
+
+        return date === today;
+      });
+      console.log(injuries);
+
       return data;
     },
   });

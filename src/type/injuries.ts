@@ -13,7 +13,7 @@ interface Team {
 interface Fixture {
   id: number;
   timezone: string;
-  data: string;
+  date: string;
   timestamp: number;
 }
 interface League {

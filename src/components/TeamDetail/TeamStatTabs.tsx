@@ -4,13 +4,7 @@ import { TeamStat } from "../../type/team";
 import TeamLineUp from "./TeamLineUp";
 import TeamInjured from "./TeamInjured";
 
-type TabState =
-  | "basic"
-  | "substitutes"
-  | "goals"
-  | "passes"
-  | "tackles"
-  | "penalty";
+type TabState = "basic" | "substitutes" | "goals" | "passes" | "tackles" | "penalty";
 
 interface StatTabsProps {
   stat?: TeamStat;
@@ -75,12 +69,7 @@ const Superscript = styled.sup`
   font-size: 0.9rem;
 `;
 
-const TeamStatTabs: React.FC<StatTabsProps> = ({
-  stat,
-  lineUpId,
-  teamId,
-  season,
-}) => {
+const TeamStatTabs: React.FC<StatTabsProps> = ({ stat, lineUpId, teamId, season }) => {
   const [tabState, setTabState] = useState<TabState>("basic");
   const handleTabs = (type: TabState) => {
     setTabState(type);
@@ -94,22 +83,13 @@ const TeamStatTabs: React.FC<StatTabsProps> = ({
         <Tab $active={tabState === "goals"} onClick={() => handleTabs("goals")}>
           골 득실
         </Tab>
-        <Tab
-          $active={tabState === "passes"}
-          onClick={() => handleTabs("passes")}
-        >
+        <Tab $active={tabState === "passes"} onClick={() => handleTabs("passes")}>
           수비 & Etc
         </Tab>
-        <Tab
-          $active={tabState === "tackles"}
-          onClick={() => handleTabs("tackles")}
-        >
+        <Tab $active={tabState === "tackles"} onClick={() => handleTabs("tackles")}>
           선수단
         </Tab>
-        <Tab
-          $active={tabState === "penalty"}
-          onClick={() => handleTabs("penalty")}
-        >
+        <Tab $active={tabState === "penalty"} onClick={() => handleTabs("penalty")}>
           부상자 명단
         </Tab>
       </Tabs>
@@ -138,11 +118,7 @@ const TeamStatTabs: React.FC<StatTabsProps> = ({
               </Cell>
               <Cell>
                 <Superscript>승률</Superscript>
-                {`${calWinRate(
-                  stat?.fixtures.wins.total,
-                  stat?.fixtures.draws.total,
-                  stat?.fixtures.played.total
-                )}%`}
+                {`${calWinRate(stat?.fixtures.wins.total, stat?.fixtures.draws.total, stat?.fixtures.played.total)}%`}
               </Cell>
               <Cell>
                 <Superscript>최근 경기</Superscript>
@@ -245,14 +221,7 @@ const TeamStatTabs: React.FC<StatTabsProps> = ({
 export default TeamStatTabs;
 
 function calWinRate(win?: number, draw?: number, play?: number): string {
-  if (
-    win !== undefined &&
-    win !== null &&
-    draw !== undefined &&
-    draw !== null &&
-    play !== undefined &&
-    play !== null
-  ) {
+  if (win !== undefined && win !== null && draw !== undefined && draw !== null && play !== undefined && play !== null) {
     return (((win + draw * 0.5) / play) * 100).toFixed(2);
   }
 

@@ -66,7 +66,6 @@ const TeamLineUp: React.FC<TeamLineUpProps> = ({ lineUpId, teamId }) => {
 
   return (
     <TeamLineUpWrapper>
-      라인업
       <Title>감독</Title>
       <br />
       <NameWrapper>

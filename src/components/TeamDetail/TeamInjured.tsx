@@ -51,11 +51,10 @@ const TeamInjured: React.FC<TeamInjuredProps> = ({ season, teamId }) => {
 
   return (
     <>
-      부상자 명단
       {injuries && (
         <TeamInjuredWrapper>
-          {injuries.map((injury) => (
-            <PlayerWrapper key={injury.player.id}>
+          {injuries.map((injury, i) => (
+            <PlayerWrapper key={i}>
               <PlayerImg src={injury.player.photo} alt="Player Image" />
               <div>
                 <Desc>{injury.player.reason}</Desc>
