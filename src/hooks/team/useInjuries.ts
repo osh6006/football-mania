@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTeamInjuries } from "../../api/footballApi";
 import { Injury } from "../../type/injuries";
+import moment from "moment";
 
 export default function useInjuries(teamId?: number, season?: number) {
   const teamInjuriesQuery = useQuery({
@@ -10,13 +11,11 @@ export default function useInjuries(teamId?: number, season?: number) {
     staleTime: Infinity,
     select(data): Injury[] {
       const injuries = data.filter((el: Injury) => {
-        const date = new Date(el.fixture.date);
-        const today = new Date();
+        const date = moment(el.fixture.date, "YY-MM-DD");
+        const today = moment().format("YY-MM-DD");
 
         console.log(date);
         console.log(today);
-
-        return date === today;
       });
       console.log(injuries);
 
