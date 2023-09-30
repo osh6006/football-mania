@@ -105,7 +105,10 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
   };
 
   return (
-    <ResultCardWrapper onClick={() => handleClick(playerInfo?.player.id || undefined)} $color={color || "#fff"}>
+    <ResultCardWrapper
+      onClick={() => handleClick(playerInfo?.player.id || teamInfo?.team?.id || coachInfo?.id)}
+      $color={color || "#fff"}
+    >
       {type === "player" && player && stat && (
         <>
           <Header $color={color || "#fff"}>
