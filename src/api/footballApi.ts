@@ -207,13 +207,12 @@ export async function getSearchPlayer(leagueId: number, name: string) {
 }
 
 // 감독을 검색한 결과의 데이터를 가져온다.
-export async function getSearchCoach(leagueId: number, name: string) {
-  if (leagueId && name) {
+export async function getSearchCoach(name: string) {
+  if (name) {
     const option = {
       ...basicOpt,
       url: `${import.meta.env.VITE_FOOTBALL_API_URL}coachs`,
       params: {
-        league: leagueId,
         search: name,
       },
     };

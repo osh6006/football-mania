@@ -19,8 +19,8 @@ export default function useSearch(leagueId: number, searchValue: string) {
 
   const searchCoachQuery = useQuery({
     queryKey: ["searchCoach", leagueId, searchValue],
-    queryFn: () => getSearchCoach(leagueId, searchValue),
-    enabled: !!leagueId && !!searchValue,
+    queryFn: () => getSearchCoach(searchValue),
+    enabled: !!searchValue,
     staleTime: Infinity,
     select(data): Coach[] {
       return data;
