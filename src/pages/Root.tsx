@@ -61,7 +61,7 @@ export default function Root() {
     }
   }, [navigate, pathname, selectedLeague]);
 
-  if (pathname !== "/" && !selectedLeague) {
+  if (pathname === "/" || !selectedLeague) {
     return (
       <LoadingWrapper>
         <div>
