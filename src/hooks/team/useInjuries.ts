@@ -11,7 +11,7 @@ export default function useInjuries(teamId?: number, season?: number) {
     staleTime: Infinity,
     select(data): Injury[] {
       const injuries = data.filter((el: Injury) => {
-        const date = moment(el.fixture.date, "YY-MM-DD");
+        const date = moment(el.fixture.date).format("YY-MM-DD");
         const today = moment().format("YY-MM-DD");
 
         console.log(date);
