@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { darken, rgba } from "polished";
 import useUser from "../hooks/useUser";
+import Loading from "../components/common/Loading";
 
 interface RootWrapperProps {
   $leagueColor?: string;
@@ -33,29 +34,43 @@ const RootWrapper = styled.main<RootWrapperProps>`
   }}
 `;
 
+const LoadingWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.theme.colors.background};
+  color: white;
+`;
+
 export default function Root() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useUser("/");
 
-  const selectedLeague = useSelector(
-    (state: RootState) => state.league.selectedLeague
-  );
-
-  const selectedLeagueList = useSelector(
-    (state: RootState) => state.league.selectLeagueList
-  );
-
-  const colorObj = selectedLeagueList?.find(
-    (el) => el.id.toString() === selectedLeague
-  );
+  const selectedLeague = useSelector((state: RootState) => state.league.selectedLeague);
+  const selectedLeagueList = useSelector((state: RootState) => state.league.selectLeagueList);
+  const colorObj = selectedLeagueList?.find((el) => el.id.toString() === selectedLeague);
 
   useEffect(() => {
     if (pathname === "/" && selectedLeague) {
       navigate(`/league/${selectedLeague}`);
     }
   }, [navigate, pathname, selectedLeague]);
+
+  if (pathname !== "/" && !selectedLeague) {
+    return (
+      <LoadingWrapper>
+        <div>
+          <Loading />
+          <div>데이터를 불러오는 중...</div>
+        </div>
+      </LoadingWrapper>
+    );
+  }
 
   return (
     <RootWrapper $leagueColor={colorObj?.color}>
