@@ -108,20 +108,20 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
           </Header>
           <Stat>
             <StatItem>
-              <Height>{stat.goals.total}</Height>
               <p>골</p>
-            </StatItem>
-            <StatItem>
-              <Height>{stat.goals.assists || 0}</Height>
-              <p>도움</p>
-            </StatItem>
-            <StatItem>
-              <Height>{stat.goals.save || 0}</Height>
-              <p>세이브</p>
-            </StatItem>
-            <StatItem>
               <Height>{stat.goals.total}</Height>
+            </StatItem>
+            <StatItem>
+              <p>도움</p>
+              <Height>{stat.goals.assists || 0}</Height>
+            </StatItem>
+            <StatItem>
+              <p>세이브</p>
+              <Height>{stat.goals.save || 0}</Height>
+            </StatItem>
+            <StatItem>
               <p>실점</p>
+              <Height>{stat.goals.total}</Height>
             </StatItem>
           </Stat>
         </>
@@ -138,16 +138,16 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
           </Header>
           <Stat>
             <StatItem>
-              <Height>{career.team.name}</Height>
               <p>팀</p>
+              <Height>{career.team.name}</Height>
             </StatItem>
             <StatItem>
-              <Height>{`${career.start} ~`}</Height>
               <p>기간</p>
+              <Height>{`${career.start} ~`}</Height>
             </StatItem>
             <StatItem>
-              <Height>{coachInfo.nationality}</Height>
               <p>국가</p>
+              <Height>{coachInfo.nationality}</Height>
             </StatItem>
           </Stat>
         </>
