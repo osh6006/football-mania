@@ -26,7 +26,7 @@ interface Venue {
   image: string;
 }
 
-export interface SearchTeam {
+interface Team {
   id: number;
   name: string;
   code: string;
@@ -34,5 +34,9 @@ export interface SearchTeam {
   founded: number;
   national: boolean;
   logo: string;
+}
+
+export interface SearchTeam {
+  team: Team;
   venue: Venue;
 }

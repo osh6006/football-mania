@@ -29,8 +29,7 @@ const ResultCardWrapper = styled.div<CardProps>`
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${(props) =>
-      lighten(0.15, mix(0.8, "#808080", props.$color))};
+    background-color: ${(props) => lighten(0.15, mix(0.8, "#808080", props.$color))};
   }
 `;
 
@@ -82,12 +81,7 @@ const StatItem = styled.div`
   gap: 4px;
 `;
 
-const ResultCard: React.FC<ResultCardProps> = ({
-  type,
-  playerInfo,
-  teamInfo,
-  coachInfo,
-}) => {
+const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coachInfo }) => {
   const navigate = useNavigate();
   const color = useColor();
   const player = playerInfo?.player;
@@ -102,10 +96,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
   };
 
   return (
-    <ResultCardWrapper
-      onClick={() => handleClick(playerInfo?.player.id || undefined)}
-      $color={color || "#fff"}
-    >
+    <ResultCardWrapper onClick={() => handleClick(playerInfo?.player.id || undefined)} $color={color || "#fff"}>
       {type === "player" && player && stat && (
         <>
           <Header $color={color || "#fff"}>
@@ -166,10 +157,10 @@ const ResultCard: React.FC<ResultCardProps> = ({
         <>
           <Header $color={color || "#fff"}>
             <TitleWrapper>
-              <Name>{teamInfo.name}</Name>
-              <Position>{`${teamInfo.country}`}</Position>
+              <Name>{teamInfo.team.name}</Name>
+              <Position>{`${teamInfo.team.country}`}</Position>
             </TitleWrapper>
-            <Avatar effect="blur" src={teamInfo.logo} alt="Avatar" />
+            <Avatar effect="blur" src={teamInfo.team.logo} alt="Avatar" />
           </Header>
           <Stat>
             <StatItem>

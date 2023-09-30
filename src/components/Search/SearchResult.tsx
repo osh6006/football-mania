@@ -94,7 +94,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
           coachs.map((coachInfo) => <ResultCard type="coach" coachInfo={coachInfo} key={coachInfo.id} />)}
         {teams &&
           teams?.length > 0 &&
-          teams.map((teamInfo) => <ResultCard type="team" teamInfo={teamInfo} key={teamInfo.id} />)}
+          teams.map((teamInfo) => <ResultCard type="team" teamInfo={teamInfo} key={teamInfo.team.id} />)}
       </>
     </SearchResultWrapper>
   );
