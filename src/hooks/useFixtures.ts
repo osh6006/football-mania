@@ -41,7 +41,8 @@ export default function useFixtures(leagueId: number) {
     queryKey: ["LiveMatches", leagueId],
     queryFn: () => getLiveMatches(leagueId, year),
     enabled: !!leagueId,
-    staleTime: 30000,
+    staleTime: 29000,
+    refetchInterval: 30000,
     select(data): LiveMatch[] {
       return data.response;
     },
