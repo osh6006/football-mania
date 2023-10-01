@@ -59,16 +59,8 @@ export default function TeamDetail() {
   // } = useFakeTeam();
 
   const {
-    teamInfoQuery: {
-      data: teamInfo,
-      isError: teamInfoError,
-      isLoading: teamInfoLoading,
-    },
-    teamStatQuery: {
-      data: teamStats,
-      isError: teamStatError,
-      isLoading: teamStatLoading,
-    },
+    teamInfoQuery: { data: teamInfo, isError: teamInfoError, isLoading: teamInfoLoading },
+    teamStatQuery: { data: teamStats, isError: teamStatError, isLoading: teamStatLoading },
 
     teamLatestMatches: {
       data: teamLatestMatches,
@@ -76,56 +68,60 @@ export default function TeamDetail() {
       isLoading: teamLatestMatchesLoading,
     },
 
-    teamStandingsQuery: {
-      data: teamStandings,
-      isError: teamStandingsError,
-      isLoading: teamStandingsLoading,
-    },
+    teamStandingsQuery: { data: teamStandings, isError: teamStandingsError, isLoading: teamStandingsLoading },
   } = useTeam(leagueId, selectSeason, params.teamId);
+
+  const isLoading = teamInfoLoading || teamStatLoading || teamLatestMatchesLoading || teamStandingsLoading;
+  const isError = teamInfoError || teamStatError || teamLatestMatchesError || teamStandingsError;
+
+  if (isLoading) {
+    return (
+      <TeamDetailWrapper>
+        <Loading />
+      </TeamDetailWrapper>
+    );
+  }
+
+  if (isError) {
+    return (
+      <TeamDetailWrapper>
+        <Error message="" />
+      </TeamDetailWrapper>
+    );
+  }
 
   return (
     <TeamDetailWrapper>
       <Title title="Team Info" />
       <SubTitle subtitle="시즌 별 팀에 대한 자세한 정보를 알아보세요" />
-      <SeasonSelector
-        currentSeason={selectSeason}
-        seasonRange={seasonRange}
-        setSelectSeason={setSelectSeason}
-      />
+      <SeasonSelector currentSeason={selectSeason} seasonRange={seasonRange} setSelectSeason={setSelectSeason} />
       {teamInfoError ||
         teamStatError ||
         teamLatestMatchesError ||
         (teamStandingsError && <Error message="데이터에 오류가 있습니다." />)}
-      {teamInfoLoading ||
-        teamStatLoading ||
-        teamLatestMatchesLoading ||
-        (teamStandingsLoading && <Loading />)}
-      {!teamInfoLoading &&
-        !teamInfoLoading &&
-        !teamLatestMatchesLoading &&
-        !teamStandingsLoading &&
-        teamInfo && (
-          <>
-            <TagTitle>팀 정보</TagTitle>
-            <TeamBasicInfo teamInfo={teamInfo} />
-            <br />
-            <TagTitle>시즌 스탯</TagTitle>
-            <br />
-            <TeamStatTable
-              stats={teamStats}
-              lineUpId={teamLatestMatches && teamLatestMatches[0].fixture.id}
-              teamId={teamInfo.team.id}
-              season={selectSeason}
-            />
-            <br />
-            <TagTitle>시즌 현황</TagTitle>
-            <br />
-            <TeamStandings teamStandings={teamStandings} />
-            <TagTitle>최근 경기</TagTitle>
-            <br />
-            <TeamLatestMatches matches={teamLatestMatches} />
-          </>
-        )}
+      {teamInfoLoading || teamStatLoading || teamLatestMatchesLoading || (teamStandingsLoading && <Loading />)}
+      {!teamInfoLoading && !teamInfoLoading && !teamLatestMatchesLoading && !teamStandingsLoading && teamInfo && (
+        <>
+          <TagTitle>팀 정보</TagTitle>
+          <TeamBasicInfo teamInfo={teamInfo} />
+          <br />
+          <TagTitle>시즌 스탯</TagTitle>
+          <br />
+          <TeamStatTable
+            stats={teamStats}
+            lineUpId={teamLatestMatches && teamLatestMatches[0].fixture.id}
+            teamId={teamInfo.team.id}
+            season={selectSeason}
+          />
+          <br />
+          <TagTitle>시즌 현황</TagTitle>
+          <br />
+          <TeamStandings teamStandings={teamStandings} />
+          <TagTitle>최근 경기</TagTitle>
+          <br />
+          <TeamLatestMatches matches={teamLatestMatches} />
+        </>
+      )}
     </TeamDetailWrapper>
   );
 }
