@@ -52,7 +52,7 @@
 ![login](https://github.com/osh6006/football-mania/assets/56256924/b6582e34-c893-412f-9c6a-ab074f6846a0)
 ![Overview](https://github.com/osh6006/football-mania/assets/56256924/2c99c7fe-3562-42d9-abaa-248636bd77ba)
 ![Overview2](https://github.com/osh6006/football-mania/assets/56256924/ae9431c2-667f-4934-8d85-bffc67115006)
-![Schedule](https://github.com/osh6006/football-mania/assets/56256924/fad2fa07-be29-43eb-8660-9d989f5d60cf)
+![Schedule](https://github.com/osh6006/football-mania/assets/56256924/484e88af-865e-476d-ade9-9b17121f1e91)
 ![Search](https://github.com/osh6006/football-mania/assets/56256924/bc2dcf74-5612-4054-b8f1-bcf978eec551)
 ![Rank](https://github.com/osh6006/football-mania/assets/56256924/fbece9a7-a990-47ea-a40e-5bb1f078e0d0)
 
