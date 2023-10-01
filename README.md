@@ -46,16 +46,37 @@
 
 ## :dart: About
 
-원하시는 세계 축구 리그를 고르고 알아보세요.
+원하시는 세계 축구 리그를 고르고 다양한 정보를 알아보세요.
 
 ## :sparkles: ScreenShots
+
+#### 로그인
+
 ![login](https://github.com/osh6006/football-mania/assets/56256924/b6582e34-c893-412f-9c6a-ab074f6846a0)
+
+#### 개요
+
 ![Overview](https://github.com/osh6006/football-mania/assets/56256924/2c99c7fe-3562-42d9-abaa-248636bd77ba)
+
+#### 다른 리그 선택 시
+
 ![Overview2](https://github.com/osh6006/football-mania/assets/56256924/ae9431c2-667f-4934-8d85-bffc67115006)
+
+#### 스케줄
+
 ![Schedule](https://github.com/osh6006/football-mania/assets/56256924/484e88af-865e-476d-ade9-9b17121f1e91)
+
+#### 검색
+
 ![Search](https://github.com/osh6006/football-mania/assets/56256924/ec771c26-ac49-4e29-833f-e04c81626485)
+
+#### 순위
+
 ![Rank](https://github.com/osh6006/football-mania/assets/56256924/fbece9a7-a990-47ea-a40e-5bb1f078e0d0)
 
+#### 선수
+
+#### 팀
 
 ## :rocket: Technologies
 
@@ -93,8 +114,6 @@ $ npm run dev
 ```
 
 ## :memo: License
-
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 Made with :heart: by <a href="https://github.com/osh6006" target="_blank">ohs6006</a>
 
