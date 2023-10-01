@@ -82,7 +82,6 @@
 
 ![Team](https://github.com/osh6006/football-mania/assets/56256924/827434e0-e836-487f-bffb-dce8aba2e2e6)
 
-
 ## :rocket: Technologies
 
 이 프로젝트에는 다음의 기술들이 사용되었습니다.
@@ -98,7 +97,8 @@
 
 ## :white_check_mark: Requirements
 
-시작하기 전에, :checkered_flag: [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) 가 설치되어 있어야 합니다.
+- 시작하기 전에, :checkered_flag: [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) 가 설치되어 있어야 합니다.
+- `.env` 파일 안에 환경 변수가 있어야 합니다. ohs6006@gmail.com 으로 메일을 주시면 응답을 받을 수 있습니다.
 
 ## :checkered_flag: Starting
 
