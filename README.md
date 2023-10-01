@@ -76,7 +76,12 @@
 
 #### 선수
 
+![Player](https://github.com/osh6006/football-mania/assets/56256924/bb0d0eb5-2790-4d06-85de-c16d1beb022b)
+
 #### 팀
+
+![Team](https://github.com/osh6006/football-mania/assets/56256924/827434e0-e836-487f-bffb-dce8aba2e2e6)
+
 
 ## :rocket: Technologies
 
