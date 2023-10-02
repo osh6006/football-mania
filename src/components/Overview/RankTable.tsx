@@ -184,7 +184,7 @@ const RankTable = () => {
                         <DesktopOnlyTableCell>
                           {team.form
                             .split("")
-                            .splice(0, 2)
+                            .splice(0, 4)
                             .map((item, i) => {
                               return (
                                 <Form type={item} contents={item} key={i} />
