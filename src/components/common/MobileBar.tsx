@@ -189,6 +189,7 @@ const RightItems = styled.div`
 `;
 
 const MenuSvg = styled.img<MenuSvgProps>`
+  max-width: 25px;
   scale: ${(props) => props.$scale};
 `;
 
