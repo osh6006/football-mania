@@ -321,10 +321,15 @@ const MobileBar: React.FC<MobileBarProps> = () => {
                   >
                     <MenuSvg
                       alt="League Logo"
-                      src={`${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
-                        import.meta.env.VITE_FIREBASE_SAVE_URL
-                      }o/${menu.imageName}?alt=media&token=${menu.imageToken}`}
-                      $scale={menu.mobileScale}
+                      src={
+                        menu.imageToken === ""
+                          ? menu.imagePath
+                          : `${import.meta.env.VITE_FIREBASE_STORAGE_URL}${
+                              import.meta.env.VITE_FIREBASE_SAVE_URL
+                            }o/${menu.imageName}?alt=media&token=${
+                              menu.imageToken
+                            }`
+                      }
                     />
                   </BottomMenu>
                 );
